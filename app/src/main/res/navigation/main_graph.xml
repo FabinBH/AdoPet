@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.projetopi.ui.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_authentication"
+            app:destination="@id/authentication" />
+    </fragment>
+    <fragment
+        android:id="@+id/adoptionFragment"
+        android:name="com.example.projetopi.ui.auth.AdoptionFragment"
+        android:label="AdoptionFragment" />
+    <navigation android:id="@+id/authentication"
+        app:startDestination="@id/dashboardFragment">
+        <fragment
+            android:id="@+id/dashboardFragment"
+            android:name="com.example.projetopi.ui.auth.DashboardFragment"
+            android:label="DashboardFragment">
+            <action
+                android:id="@+id/action_dashboardFragment_to_loginFragment3"
+                app:destination="@id/loginFragment3" />
+            <action
+                android:id="@+id/action_dashboardFragment_to_signupFragment2"
+                app:destination="@id/signupFragment2" />
+        </fragment>
+        <fragment
+            android:id="@+id/loginFragment3"
+            android:name="com.example.projetopi.ui.auth.LoginFragment"
+            android:label="LoginFragment" />
+        <fragment
+            android:id="@+id/signupFragment2"
+            android:name="com.example.projetopi.ui.auth.SignupFragment"
+            android:label="SignupFragment" />
+        <action
+            android:id="@+id/action_global_adoptionFragment2"
+            app:destination="@id/adoptionFragment" />
+    </navigation>
+</navigation>

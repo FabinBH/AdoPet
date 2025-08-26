@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="414dp"
-    android:layout_height="896dp"
-    tools:context=".CriarConta">
+    android:id="@+id/fragment_criar_conta"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView"
@@ -34,8 +33,7 @@
         app:layout_constraintHorizontal_bias="0.144"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.188"
-        />
+        app:layout_constraintVertical_bias="0.188" />
 
     <EditText
         android:id="@+id/editTextText"
@@ -48,9 +46,7 @@
         app:layout_constraintHorizontal_bias="0.282"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.339"
-
-        />
+        app:layout_constraintVertical_bias="0.339" />
 
     <EditText
         android:id="@+id/Email"
@@ -63,9 +59,7 @@
         app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.448"
-
-        />
+        app:layout_constraintVertical_bias="0.448" />
 
     <EditText
         android:id="@+id/etSenha"
@@ -73,7 +67,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="472dp"
         android:layout_weight="1"
-
         android:fontFamily=""
         android:hint=""
         android:inputType="textPassword"
@@ -115,13 +108,15 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="256dp"
-        android:layout_marginEnd="352dp"
+        android:layout_marginTop="212dp"
+        android:layout_marginEnd="348dp"
         android:fontFamily="@font/afacadsemibold"
         android:text="Usuário "
         android:textColor="#7C7C7C"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -197,7 +192,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
-
         android:fontFamily="@font/afacadsemibold"
         android:text="Já tem uma conta?"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,103 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
-    android:layout_width="414dp"
-    android:layout_height="896dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="414dp"
-        android:layout_height="364dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/familia" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="200dp"
-        android:layout_height="63dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="189dp"
-        android:layout_marginBottom="15dp"
-        android:fontFamily="@font/afacad"
-        android:text="Encontrando um lar para seu animal"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="364dp"
-        android:layout_height="67dp"
-        android:layout_marginBottom="15dp"
-        android:backgroundTint="#FE8C00"
-        android:fontFamily="@font/afacad"
-        android:text="Criar Conta"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="364dp"
-        android:layout_height="67dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#FE8C00"
-        android:fontFamily="@font/afacad"
-        android:text="Login"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="190dp"
-        android:layout_height="19dp"
-        android:layout_marginBottom="11dp"
-        android:fontFamily="@font/afacad"
-        android:text="Ou conecte com suas redes sociais"
-        android:textAlignment="center"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="364dp"
-        android:layout_height="67dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="#5383EC"
-        android:fontFamily="@font/afacad"
-        android:text="Continuar com Google"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="364dp"
-        android:layout_height="67dp"
-        android:layout_marginStart="25dp"
-        android:backgroundTint="#4A66AC"
-        android:fontFamily="@font/afacad"
-        android:text="Continuar com Facebook"
-        android:textSize="18sp"
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/main_graph"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.949" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
