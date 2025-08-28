@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Header: Pesquisa e ícones -->
     <EditText
         android:id="@+id/busca"
         android:layout_width="0dp"
@@ -51,7 +50,6 @@
         tools:layout_editor_absoluteY="64dp"
         tools:ignore="MissingConstraints">
 
-        <!-- Card Cachorro Orelhudo -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -86,7 +84,6 @@
                 android:textColor="@android:color/white" />
         </LinearLayout>
 
-        <!-- Card Cachorro Preto e Branco -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -121,6 +118,5 @@
                 android:textColor="@android:color/white" />
         </LinearLayout>
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
