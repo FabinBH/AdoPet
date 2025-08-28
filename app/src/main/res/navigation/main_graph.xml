@@ -12,13 +12,10 @@
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_authentication"
-            app:destination="@id/authentication" />
+            app:destination="@id/authentication"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
-    <fragment
-        android:id="@+id/adoptionFragment"
-        android:name="com.example.projetopi.ui.auth.AdoptionFragment"
-        android:label="AdoptionFragment"
-        tools:layout="@layout/fragment_adoption"/>
     <navigation android:id="@+id/authentication"
         app:startDestination="@id/dashboardFragment">
         <fragment
@@ -42,7 +39,11 @@
             android:name="com.example.projetopi.ui.auth.SignupFragment"
             android:label="SignupFragment" />
         <action
-            android:id="@+id/action_global_adoptionFragment2"
+            android:id="@+id/action_global_adoptionFragment"
             app:destination="@id/adoptionFragment" />
     </navigation>
+    <fragment
+        android:id="@+id/adoptionFragment"
+        android:name="com.example.projetopi.ui.auth.AdoptionFragment"
+        android:label="AdoptionFragment" />
 </navigation>

@@ -2,9 +2,40 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp">
+
+    <Button
+        android:id="@+id/buttonCriarConta2"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="17dp"
+        android:backgroundTint="#5383EC"
+        android:fontFamily="@font/afacad"
+        android:text="Continuar com Google"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/buttonLogin2"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="184dp"
+        android:backgroundTint="#4A66AC"
+        android:fontFamily="@font/afacad"
+        android:text="Continuar com Facebook"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonCriarConta" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -63,44 +94,14 @@
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Ou conecte com suas redes sociais"
-        android:textSize="13sp"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/afacad"
+        android:text="Ou conecte com suas redes sociais"
         android:textAlignment="center"
         android:textColor="#7C7C7C"
-        app:layout_constraintTop_toBottomOf="@id/buttonLogin"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp"/>
-
-    <Button
-        android:id="@+id/buttonGoogle"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:text="Continuar com Google"
-        android:textSize="18sp"
-        android:backgroundTint="#5383EC"
-        android:textColor="@android:color/white"
-        android:fontFamily="@font/afacad"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp"/>
-
-    <Button
-        android:id="@+id/buttonFacebook"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:text="Continuar com Facebook"
-        android:textSize="18sp"
-        android:backgroundTint="#4A66AC"
-        android:textColor="@android:color/white"
-        android:fontFamily="@font/afacad"
-        app:layout_constraintTop_toBottomOf="@id/buttonGoogle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp"/>
+        app:layout_constraintTop_toBottomOf="@id/buttonLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
