@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
     app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.projetopi.ui.SplashFragment"
-        android:label="SplashFragment" >
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_authentication"
             app:destination="@id/authentication" />
@@ -15,13 +17,15 @@
     <fragment
         android:id="@+id/adoptionFragment"
         android:name="com.example.projetopi.ui.auth.AdoptionFragment"
-        android:label="AdoptionFragment" />
+        android:label="AdoptionFragment"
+        tools:layout="@layout/fragment_adoption"/>
     <navigation android:id="@+id/authentication"
         app:startDestination="@id/dashboardFragment">
         <fragment
             android:id="@+id/dashboardFragment"
             android:name="com.example.projetopi.ui.auth.DashboardFragment"
-            android:label="DashboardFragment">
+            android:label="DashboardFragment"
+            tools:layout="@layout/fragment_dashboard">
             <action
                 android:id="@+id/action_dashboardFragment_to_loginFragment3"
                 app:destination="@id/loginFragment3" />
