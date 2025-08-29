@@ -7,18 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.projetopi.R
-import com.example.projetopi.databinding.FragmentAdoptionBinding
-import com.example.projetopi.databinding.FragmentDashboardBinding
+import com.example.projetopi.databinding.FragmentAdoptionConfirmationBinding
+import com.example.projetopi.databinding.FragmentSignupBinding
 
-class AdoptionFragment : Fragment() {
-    private var _binding: FragmentAdoptionBinding? = null
+class AdoptionConfirmationFragment : Fragment() {
+
+    private var _binding: FragmentAdoptionConfirmationBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAdoptionBinding.inflate(inflater, container, false)
+        _binding = FragmentAdoptionConfirmationBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,11 +34,8 @@ class AdoptionFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.btnAdotar1.setOnClickListener {
-            findNavController().navigate(R.id.adoptionConfirmationFragment)
-        }
-        binding.btnAdotar2.setOnClickListener {
-            findNavController().navigate(R.id.adoptionConfirmationFragment)
+        binding.btnAdoption.setOnClickListener {
+            findNavController().navigate(R.id.adoptionFragment)
         }
     }
 }

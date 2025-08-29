@@ -48,5 +48,14 @@
         android:id="@+id/adoptionFragment"
         android:name="com.example.projetopi.ui.auth.AdoptionFragment"
         android:label="AdoptionFragment"
-        tools:layout="@layout/fragment_adoption"/>
+        tools:layout="@layout/fragment_adoption">
+        <action
+            android:id="@+id/action_adoptionFragment_to_adoptionConfirmationFragment"
+            app:destination="@id/adoptionConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adoptionConfirmationFragment"
+        android:name="com.example.projetopi.ui.auth.AdoptionConfirmationFragment"
+        android:label="AdoptionConfirmationFragment"
+        tools:layout="@layout/fragment_adoption_confirmation"/>
 </navigation>

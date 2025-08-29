@@ -46,9 +46,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="64dp"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -75,7 +75,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/btnAdotarOrelhudo"
+                android:id="@+id/btnAdotar1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -109,7 +109,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/btnAdotarPretoBranco"
+                android:id="@+id/btnAdotar2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -118,5 +118,12 @@
                 android:textColor="@android:color/white" />
         </LinearLayout>
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="64dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
