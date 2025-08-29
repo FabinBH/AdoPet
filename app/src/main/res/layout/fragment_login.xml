@@ -65,6 +65,7 @@
         android:hint="Digite seu email"
         android:inputType="textEmailAddress"
         android:padding="12dp"
+        android:fontFamily="@font/afacadmedium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView4" />
@@ -89,6 +90,7 @@
         android:hint="Digite sua senha"
         android:inputType="textPassword"
         android:padding="12dp"
+        android:fontFamily="@font/afacadmedium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView5" />
@@ -112,6 +114,8 @@
         android:backgroundTint="#FE8C00"
         android:text="Entrar"
         android:textColor="@android:color/white"
+        android:fontFamily="@font/afacadbold"
+        android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etSenha" />
@@ -123,6 +127,8 @@
         android:layout_marginTop="16dp"
         android:text="Esqueceu a senha?"
         android:textColor="#7C7C7C"
+        android:fontFamily="@font/afacadmedium"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button" />
 

@@ -11,7 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Pesquisar"
-        android:padding="12dp"
+        android:padding="15sp"
+        android:fontFamily="@font/afacadmedium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/imageViewFiltro"
         app:layout_constraintTop_toTopOf="parent"
@@ -71,8 +72,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:text="Cachorro Orelhudo"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                android:fontFamily="@font/afacadbold" />
 
             <Button
                 android:id="@+id/btnAdotar1"
@@ -81,7 +82,9 @@
                 android:layout_marginTop="8dp"
                 android:backgroundTint="#FE8C00"
                 android:text="Adotar"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/afacadbold"
+                android:textSize="17sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -105,8 +108,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:text="Cachorro Preto e Branco"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                android:fontFamily="@font/afacadbold" />
 
             <Button
                 android:id="@+id/btnAdotar2"
@@ -115,7 +118,9 @@
                 android:layout_marginTop="8dp"
                 android:backgroundTint="#FE8C00"
                 android:text="Adotar"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/afacadbold"
+                android:textSize="17sp"/>
         </LinearLayout>
     </LinearLayout>
 
