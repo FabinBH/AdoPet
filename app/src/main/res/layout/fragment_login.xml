@@ -25,7 +25,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/afacadsemibold"
         android:text="Login"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/afacadsemibold"
         android:text="Digite seu email e senha."
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         android:textColor="#7C7C7C"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -138,7 +138,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/login"
+        android:id="@+id/criarconta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="92dp"
