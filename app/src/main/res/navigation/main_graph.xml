@@ -58,4 +58,14 @@
         android:name="com.example.projetopi.ui.auth.AdoptionConfirmationFragment"
         android:label="AdoptionConfirmationFragment"
         tools:layout="@layout/fragment_adoption_confirmation"/>
+    <fragment
+        android:id="@+id/ongFragment"
+        android:name="com.example.projetopi.ui.auth.OngFragment"
+        android:label="OngFragment"
+        tools:layout="@layout/fragment_ong"/>
+    <fragment
+        android:id="@+id/animalRegisterFragment"
+        android:name="com.example.projetopi.ui.auth.AnimalRegisterFragment"
+        android:label="AnimalRegisterFragment"
+        tools:layout="@layout/fragment_animal_register"/>
 </navigation>

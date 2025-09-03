@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:title="Home"
+        android:icon="@drawable/ic_home" />
+    <item
+        android:id="@+id/exploreFragment"
+        android:title="Explorar"
+        android:icon="@drawable/ic_settings" />
+    <item
+        android:id="@+id/registerFragment"
+        android:title="Cadastrar"
+        android:icon="@drawable/ic_settings" />
+    <item
+        android:id="@+id/donateFragment"
+        android:title="Doar"
+        android:icon="@drawable/ic_settings" />
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="Conta"
+        android:icon="@drawable/ic_settings" />
+</menu>
