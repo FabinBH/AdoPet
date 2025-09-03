@@ -6,15 +6,15 @@
     <item
         android:id="@+id/exploreFragment"
         android:title="Explorar"
-        android:icon="@drawable/ic_register" />
+        android:icon="@drawable/ic_search" />
     <item
         android:id="@+id/registerFragment"
         android:title="Cadastrar"
-        android:icon="@drawable/ic_register" />
+        android:icon="@drawable/ic_add_circle" />
     <item
         android:id="@+id/donateFragment"
         android:title="Doar"
-        android:icon="@drawable/ic_register" />
+        android:icon="@drawable/ic_donate" />
     <item
         android:id="@+id/settingsFragment"
         android:title="Conta"
