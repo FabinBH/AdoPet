@@ -1,22 +1,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/nav_home"
         android:title="Home"
         android:icon="@drawable/ic_home" />
     <item
-        android:id="@+id/exploreFragment"
+        android:id="@+id/nav_explore"
         android:title="Explorar"
         android:icon="@drawable/ic_search" />
     <item
-        android:id="@+id/registerFragment"
+        android:id="@+id/nav_register"
         android:title="Cadastrar"
         android:icon="@drawable/ic_add_circle" />
     <item
-        android:id="@+id/donateFragment"
+        android:id="@+id/nav_donate"
         android:title="Doar"
         android:icon="@drawable/ic_donate" />
     <item
-        android:id="@+id/settingsFragment"
+        android:id="@+id/nav_settings"
         android:title="Conta"
         android:icon="@drawable/ic_person" />
 </menu>
