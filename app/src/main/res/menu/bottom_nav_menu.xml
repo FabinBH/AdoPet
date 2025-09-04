@@ -18,5 +18,5 @@
     <item
         android:id="@+id/settingsFragment"
         android:title="Conta"
-        android:icon="@drawable/ic_register" />
+        android:icon="@drawable/ic_person" />
 </menu>
