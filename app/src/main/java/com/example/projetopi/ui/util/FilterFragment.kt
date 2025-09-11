@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.projetopi.databinding.FragmentFilterBinding
 
 class FilterFragment : Fragment() {
@@ -23,6 +24,11 @@ class FilterFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initListeners()
     }
     /*private lateinit var checkBoxCaes: CheckBox
     private lateinit var checkBoxGatos: CheckBox
@@ -81,4 +87,10 @@ class FilterFragment : Fragment() {
 
         Toast.makeText(this, mensagem.toString(), Toast.LENGTH_LONG).show()
     }*/
+
+    private fun initListeners() {
+        binding.imageView.setOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
 }

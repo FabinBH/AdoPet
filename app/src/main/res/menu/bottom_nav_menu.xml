@@ -4,7 +4,7 @@
         android:title="Home"
         android:icon="@drawable/ic_home" />
     <item
-        android:id="@+id/nav_explore"
+        android:id="@+id/adoptionFragment"
         android:title="Explorar"
         android:icon="@drawable/ic_search" />
     <item
@@ -12,7 +12,7 @@
         android:title="Cadastrar"
         android:icon="@drawable/ic_add_circle" />
     <item
-        android:id="@+id/nav_donate"
+        android:id="@+id/ongFragment"
         android:title="Doar"
         android:icon="@drawable/ic_donate" />
     <item

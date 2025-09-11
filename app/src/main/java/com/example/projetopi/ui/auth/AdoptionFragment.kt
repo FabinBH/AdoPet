@@ -51,7 +51,7 @@ class AdoptionFragment : Fragment() {
         binding.btnAdotar2.setOnClickListener {
             findNavController().navigate(R.id.adoptionConfirmationFragment)
         }
-        binding.imageViewChat.setOnClickListener {
+        binding.imageViewFiltro.setOnClickListener {
             findNavController().navigate(R.id.filterFragment)
         }
     }
