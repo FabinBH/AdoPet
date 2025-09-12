@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_adoptionFragment_to_filterFragment"
             app:destination="@id/filterFragment" />
+        <action
+            android:id="@+id/action_adoptionFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
     <fragment
         android:id="@+id/adoptionConfirmationFragment"
@@ -65,7 +68,11 @@
         android:id="@+id/ongFragment"
         android:name="com.example.projetopi.ui.auth.OngFragment"
         android:label="OngFragment"
-        tools:layout="@layout/fragment_ong"/>
+        tools:layout="@layout/fragment_ong">
+        <action
+            android:id="@+id/action_ongFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
     <fragment
         android:id="@+id/animalRegisterFragment"
         android:name="com.example.projetopi.ui.auth.AnimalRegisterFragment"
@@ -76,4 +83,28 @@
         android:name="com.example.projetopi.ui.util.FilterFragment"
         android:label="FilterFragment"
         tools:layout="@layout/fragment_filter"/>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.projetopi.ui.auth.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_animalRegisterFragment"
+            app:destination="@id/animalRegisterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.projetopi.ui.auth.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.projetopi.ui.auth.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/socialFragment"
+        android:name="com.example.projetopi.ui.auth.SocialFragment"
+        android:label="fragment_social"
+        tools:layout="@layout/fragment_social" />
 </navigation>

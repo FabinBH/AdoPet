@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_home"
+        android:id="@+id/socialFragment"
         android:title="Home"
         android:icon="@drawable/ic_home" />
     <item
@@ -8,7 +8,7 @@
         android:title="Explorar"
         android:icon="@drawable/ic_search" />
     <item
-        android:id="@+id/nav_register"
+        android:id="@+id/registerFragment"
         android:title="Cadastrar"
         android:icon="@drawable/ic_add_circle" />
     <item
@@ -16,7 +16,7 @@
         android:title="Doar"
         android:icon="@drawable/ic_donate" />
     <item
-        android:id="@+id/nav_settings"
+        android:id="@+id/profileFragment"
         android:title="Conta"
         android:icon="@drawable/ic_person" />
 </menu>
