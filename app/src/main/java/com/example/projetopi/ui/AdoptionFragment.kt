@@ -1,18 +1,13 @@
-package com.example.projetopi.ui.auth
+package com.example.projetopi.ui
 
-import android.content.res.ColorStateList
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import com.example.projetopi.R
 import com.example.projetopi.databinding.FragmentAdoptionBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class AdoptionFragment : Fragment() {
     private var _binding: FragmentAdoptionBinding? = null

@@ -1,22 +1,24 @@
-package com.example.projetopi.ui.auth
+package com.example.projetopi.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.projetopi.R
-import com.example.projetopi.databinding.FragmentOngBinding
+import com.example.projetopi.databinding.FragmentAdoptionConfirmationBinding
 
-class OngFragment : Fragment() {
-    private var _binding: FragmentOngBinding? = null
+class AdoptionConfirmationFragment : Fragment() {
+
+    private var _binding: FragmentAdoptionConfirmationBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOngBinding.inflate(inflater, container, false)
+        _binding = FragmentAdoptionConfirmationBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -31,6 +33,8 @@ class OngFragment : Fragment() {
     }
 
     private fun initListeners() {
-
+        binding.btnAdoption.setOnClickListener {
+            findNavController().navigate(R.id.adoptionFragment)
+        }
     }
 }
