@@ -20,7 +20,7 @@
         app:startDestination="@id/dashboardFragment">
         <fragment
             android:id="@+id/dashboardFragment"
-            android:name="com.example.projetopi.ui.auth.DashboardFragment"
+            android:name="com.example.projetopi.ui.DashboardFragment"
             android:label="DashboardFragment"
             tools:layout="@layout/fragment_dashboard">
             <action
@@ -46,7 +46,7 @@
     </navigation>
     <fragment
         android:id="@+id/adoptionFragment"
-        android:name="com.example.projetopi.ui.auth.AdoptionFragment"
+        android:name="com.example.projetopi.ui.AdoptionFragment"
         android:label="AdoptionFragment"
         tools:layout="@layout/fragment_adoption">
         <action
@@ -61,12 +61,12 @@
     </fragment>
     <fragment
         android:id="@+id/adoptionConfirmationFragment"
-        android:name="com.example.projetopi.ui.auth.AdoptionConfirmationFragment"
+        android:name="com.example.projetopi.ui.AdoptionConfirmationFragment"
         android:label="AdoptionConfirmationFragment"
         tools:layout="@layout/fragment_adoption_confirmation"/>
     <fragment
         android:id="@+id/ongFragment"
-        android:name="com.example.projetopi.ui.auth.OngFragment"
+        android:name="com.example.projetopi.ui.OngFragment"
         android:label="OngFragment"
         tools:layout="@layout/fragment_ong">
         <action
@@ -75,7 +75,7 @@
     </fragment>
     <fragment
         android:id="@+id/animalRegisterFragment"
-        android:name="com.example.projetopi.ui.auth.AnimalRegisterFragment"
+        android:name="com.example.projetopi.ui.AnimalRegisterFragment"
         android:label="AnimalRegisterFragment"
         tools:layout="@layout/fragment_animal_register"/>
     <fragment
@@ -94,17 +94,17 @@
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
-        android:name="com.example.projetopi.ui.auth.ChatFragment"
+        android:name="com.example.projetopi.ui.ChatFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.projetopi.ui.auth.ProfileFragment"
+        android:name="com.example.projetopi.ui.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/socialFragment"
-        android:name="com.example.projetopi.ui.auth.SocialFragment"
+        android:name="com.example.projetopi.ui.SocialFragment"
         android:label="fragment_social"
         tools:layout="@layout/fragment_social" />
 </navigation>
