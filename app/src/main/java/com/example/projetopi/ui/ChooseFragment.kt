@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.projetopi.databinding.FragmentChooseBinding
 import com.example.projetopi.ui.adapter.ViewPagerAdapter
+import com.example.projetopi.R
 import com.google.android.material.tabs.TabLayoutMediator
 
 class ChooseFragment : Fragment() {
@@ -14,7 +15,8 @@ class ChooseFragment : Fragment() {
     private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChooseBinding.inflate(inflater, container, false)
@@ -35,7 +37,8 @@ class ChooseFragment : Fragment() {
         val pageAdapter = ViewPagerAdapter(requireActivity())
         binding.viewPager.adapter = pageAdapter
 
-        pageAdapter.addFragment(OngFragment(), 1)
+        pageAdapter.addFragment(OngFragment(), R.string.ong_page)
+        pageAdapter.addFragment(AdoptionFragment(), R.string.adoption_page)
 
         binding.viewPager.offscreenPageLimit = pageAdapter.itemCount
 

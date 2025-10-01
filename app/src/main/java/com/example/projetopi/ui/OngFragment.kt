@@ -11,6 +11,7 @@ import com.example.projetopi.databinding.FragmentOngBinding
 class OngFragment : Fragment() {
     private var _binding: FragmentOngBinding? = null
     private val binding get() = _binding!!
+    private lateinit var taskAdapter: TaskAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
