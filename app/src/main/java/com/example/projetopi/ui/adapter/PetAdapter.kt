@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetopi.data.model.Pet
+import com.example.projetopi.data.model.Status
 import com.example.projetopi.databinding.ItemAdopetBinding
 
 class PetAdapter(
@@ -17,17 +18,19 @@ class PetAdapter(
 ): ListAdapter<Pet, PetAdapter.MyViewHolder>(DIFF_CALBACK) {
 
     companion object {
+        val SELECT_DETAILS = 1
+        val SELECT_ADOPT = 2
         private val DIFF_CALBACK = object : DiffUtil.ItemCallback<Pet>() {
             override fun areItemsTheSame(
                 oldItem: Pet, newItem: Pet
             ): Boolean {
-                return oldItem.id == newItem.id && oldItem.description == newItem.description
+                return oldItem.id == newItem.id && oldItem.adopted == newItem.adopted
             }
 
             override fun areContentsTheSame(
                 oldItem: Pet, newItem: Pet
             ): Boolean {
-                return oldItem == newItem && oldItem.description == newItem.description
+                return oldItem == newItem && oldItem.adopted == newItem.adopted
             }
         }
     }
@@ -38,36 +41,24 @@ class PetAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val task = getItem(position)
-        holder.binding.textDescription.text = task.description
+        val pet = getItem(position)
+        //holder.binding.textDescription.text = pet.description
 
-        setIndicators(task, holder)
+        //setIndicators(pet, holder)
     }
 
-    private fun setIndicators(task: Task, holder: com.fabio.task.ui.adapter.TaskAdapter.MyViewHolder){
-        when(task.status){
-            Status.TODO -> {
-                holder.binding.buttonBack.isVisible = false
-                holder.binding.buttonFoward.setOnClickListener { taskSelected(task, SELECT_NEXT) }
+    /*private fun setIndicators(pet: Pet, holder: MyViewHolder){
+        when(pet.adopted){
+            Status.NOT_ADOPTED -> {
+                holder.binding.btnDetalhes.isVisible = false
+                holder.binding.btnDetalhes.setOnClickListener { taskSelected(task, SELECT_NEXT) }
             }
-            Status.DOING -> {
-                holder.binding.buttonBack.setColorFilter(ContextCompat.getColor(context, R.color.color_status_todo))
-                holder.binding.buttonFoward.setColorFilter( ContextCompat.getColor(context, R.color.color_status_done))
-                holder.binding.buttonFoward.setOnClickListener { taskSelected(task, SELECT_NEXT) }
-                holder.binding.buttonBack.setOnClickListener { taskSelected(task, SELECT_BACK) }
 
-
-            }
-            Status.DONE -> {
-                holder.binding.buttonFoward.isVisible = false
-                holder.binding.buttonBack.setOnClickListener { taskSelected(task, SELECT_BACK) }
-
-            }
         }
         holder.binding.buttonDelete.setOnClickListener { taskSelected(task, SELECT_REMOVER)}
         holder.binding.buttonEditar.setOnClickListener { taskSelected(task, SELECT_EDIT) }
         holder.binding.buttonDetails.setOnClickListener { taskSelected(task, SELECT_DETAILS) }
-    }
+    }*/
 
     inner class MyViewHolder(val binding: ItemAdopetBinding): RecyclerView.ViewHolder(binding.root) {
 

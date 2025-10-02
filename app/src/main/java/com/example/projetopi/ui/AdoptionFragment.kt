@@ -29,10 +29,10 @@ class AdoptionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initListeners()
+        //initListeners()
     }
 
-    private fun initListeners() {
+    /*private fun initListeners() {
         binding.btnAdotar1.setOnClickListener {
             findNavController().navigate(R.id.adoptionConfirmationFragment)
         }
@@ -42,5 +42,5 @@ class AdoptionFragment : Fragment() {
         binding.imageViewFiltro.setOnClickListener {
             findNavController().navigate(R.id.filterFragment)
         }
-    }
+    }*/
 }
