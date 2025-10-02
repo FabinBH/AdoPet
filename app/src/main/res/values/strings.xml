@@ -3,4 +3,6 @@
 
     <string name="ong_page">Página de ONG</string>
     <string name="adoption_page">Página de adoção</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
