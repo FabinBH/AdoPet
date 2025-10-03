@@ -49,7 +49,7 @@
             app:destination="@id/adoptionFragment" />
         <fragment
             android:id="@+id/recoverPasswordFragment"
-            android:name="com.example.projetopi.ui.RecoverPasswordFragment"
+            android:name="com.example.projetopi.ui.auth.RecoverPasswordFragment"
             android:label="RecoverPasswordFragment"
             tools:layout="@layout/fragment_recover_password"/>
     </navigation>
