@@ -41,9 +41,8 @@ class LoginFragment : Fragment() {
         binding.criarconta.setOnClickListener {
             findNavController().navigate(R.id.signupFragment2)
         }
-        // Tela de "Esqueceu a senha" precisa ser criada
-        //binding.textView3.setOnClickListener {
-        //    findNavController().navigate(R.id.forgotPasswordFragment)
-        //}
+        binding.textView3.setOnClickListener {
+            findNavController().navigate(R.id.recoverPasswordFragment)
+        }
     }
 }
