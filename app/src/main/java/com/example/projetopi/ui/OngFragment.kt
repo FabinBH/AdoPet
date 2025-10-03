@@ -45,7 +45,7 @@ class OngFragment : Fragment() {
                     Toast.makeText(requireContext(), "Detalhes do animal", Toast.LENGTH_SHORT).show()
                 }
                 PetAdapter.SELECT_ADOPT -> {
-                    Toast.makeText(requireContext(), "Adotar animal", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Doar para ONG", Toast.LENGTH_SHORT).show()
                 }
             }
         }
