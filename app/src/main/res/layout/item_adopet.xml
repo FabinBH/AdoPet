@@ -9,7 +9,6 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="3dp">
 
@@ -43,12 +42,12 @@
                 android:layout_marginTop="12dp">
 
                 <Button
-                    android:id="@+id/btnEditar"
+                    android:id="@+id/btnAdotar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:backgroundTint="@color/orange"
-                    android:text="Editar"
+                    android:text="Adotar"
                     android:textColor="@android:color/white" />
 
                 <Button

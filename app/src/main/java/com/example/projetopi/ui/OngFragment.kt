@@ -61,8 +61,4 @@ class OngFragment : Fragment() {
 
         adapter.submitList(pets)
     }
-
-    private fun initListeners() {
-
-    }
 }
