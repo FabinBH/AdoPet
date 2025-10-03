@@ -34,7 +34,11 @@
             android:id="@+id/loginFragment3"
             android:name="com.example.projetopi.ui.auth.LoginFragment"
             android:label="LoginFragment"
-            tools:layout="@layout/fragment_login"/>
+            tools:layout="@layout/fragment_login">
+            <action
+                android:id="@+id/action_loginFragment3_to_recoverPasswordFragment"
+                app:destination="@id/recoverPasswordFragment" />
+        </fragment>
         <fragment
             android:id="@+id/signupFragment2"
             android:name="com.example.projetopi.ui.auth.SignupFragment"
@@ -43,6 +47,11 @@
         <action
             android:id="@+id/action_global_adoptionFragment"
             app:destination="@id/adoptionFragment" />
+        <fragment
+            android:id="@+id/recoverPasswordFragment"
+            android:name="com.example.projetopi.ui.RecoverPasswordFragment"
+            android:label="RecoverPasswordFragment"
+            tools:layout="@layout/fragment_recover_password"/>
     </navigation>
     <fragment
         android:id="@+id/adoptionFragment"
