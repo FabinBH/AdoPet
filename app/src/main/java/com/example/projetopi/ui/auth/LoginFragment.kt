@@ -35,10 +35,10 @@ class LoginFragment : Fragment() {
         binding.imageButton.setOnClickListener {
             findNavController().navigate(R.id.dashboardFragment)
         }
-        binding.button.setOnClickListener {
-            findNavController().navigate(R.id.adoptionFragment)
+        binding.buttonEntrar.setOnClickListener {
+            findNavController().navigate(R.id.action_global_chooseFragment)
         }
-        binding.criarconta.setOnClickListener {
+        binding.TvCriarconta.setOnClickListener {
             findNavController().navigate(R.id.signupFragment2)
         }
         binding.textView3.setOnClickListener {

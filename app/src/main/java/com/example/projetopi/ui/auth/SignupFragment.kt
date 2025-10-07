@@ -32,10 +32,10 @@ class SignupFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.button.setOnClickListener {
-            findNavController().navigate(R.id.adoptionFragment)
+        binding.buttonEntrar.setOnClickListener {
+            findNavController().navigate(R.id.action_global_chooseFragment)
         }
-        binding.login.setOnClickListener {
+        binding.tvLogin.setOnClickListener {
             findNavController().navigate(R.id.loginFragment3)
         }
         binding.imageButton.setOnClickListener {

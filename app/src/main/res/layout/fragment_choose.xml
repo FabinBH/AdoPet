@@ -15,19 +15,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/constraintLayout1">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="0dp"
-            android:layout_height="70dp"
-            android:contentDescription="Tabs"
-            android:elevation="0dp"
-            app:tabTextAppearance="@style/CustomTabLayout"
-            app:tabIndicatorColor="@color/white"
-            app:tabTextColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnLogout"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
         <EditText
             android:id="@+id/busca"
             android:layout_width="0dp"

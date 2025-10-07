@@ -44,14 +44,14 @@
             android:name="com.example.projetopi.ui.auth.SignupFragment"
             android:label="SignupFragment"
             tools:layout="@layout/fragment_signup"/>
-        <action
-            android:id="@+id/action_global_adoptionFragment"
-            app:destination="@id/adoptionFragment" />
         <fragment
             android:id="@+id/recoverPasswordFragment"
             android:name="com.example.projetopi.ui.auth.RecoverPasswordFragment"
             android:label="RecoverPasswordFragment"
             tools:layout="@layout/fragment_recover_password"/>
+        <action
+            android:id="@+id/action_global_chooseFragment"
+            app:destination="@id/chooseFragment" />
     </navigation>
     <fragment
         android:id="@+id/adoptionFragment"
@@ -116,4 +116,9 @@
         android:name="com.example.projetopi.ui.SocialFragment"
         android:label="fragment_social"
         tools:layout="@layout/fragment_social" />
+    <fragment
+        android:id="@+id/chooseFragment"
+        android:name="com.example.projetopi.ui.ChooseFragment"
+        android:label="ChooseFragment"
+        tools:layout="@layout/fragment_choose"/>
 </navigation>
