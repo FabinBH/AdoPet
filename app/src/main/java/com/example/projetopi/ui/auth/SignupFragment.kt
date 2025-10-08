@@ -33,7 +33,7 @@ class SignupFragment : Fragment() {
 
     private fun initListeners() {
         binding.buttonEntrar.setOnClickListener {
-            findNavController().navigate(R.id.action_global_chooseFragment)
+            findNavController().navigate(R.id.adoptionFragment)
         }
         binding.tvLogin.setOnClickListener {
             findNavController().navigate(R.id.loginFragment3)

@@ -50,8 +50,8 @@
             android:label="RecoverPasswordFragment"
             tools:layout="@layout/fragment_recover_password"/>
         <action
-            android:id="@+id/action_global_chooseFragment"
-            app:destination="@id/chooseFragment" />
+            android:id="@+id/action_global_adoptionFragment"
+            app:destination="@id/adoptionFragment" />
     </navigation>
     <fragment
         android:id="@+id/adoptionFragment"

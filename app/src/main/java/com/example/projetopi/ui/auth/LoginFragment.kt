@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
             findNavController().navigate(R.id.dashboardFragment)
         }
         binding.buttonEntrar.setOnClickListener {
-            findNavController().navigate(R.id.action_global_chooseFragment)
+            findNavController().navigate(R.id.adoptionFragment)
         }
         binding.TvCriarconta.setOnClickListener {
             findNavController().navigate(R.id.signupFragment2)

@@ -30,10 +30,10 @@ class ChooseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initTabs()
+        // initTabs()
     }
 
-    private fun initTabs() {
+    /*private fun initTabs() {
         val pageAdapter = ViewPagerAdapter(requireActivity())
         binding.viewPager.adapter = pageAdapter
 
@@ -45,5 +45,5 @@ class ChooseFragment : Fragment() {
         TabLayoutMediator(binding.tabs, binding.viewPager) {
             tab, position -> tab.text = getString(pageAdapter.getTitle(position))
         }.attach()
-    }
+    }*/
 }
