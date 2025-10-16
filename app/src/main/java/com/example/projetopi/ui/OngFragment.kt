@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetopi.R
@@ -60,5 +61,13 @@ class OngFragment : Fragment() {
         )
 
         adapter.submitList(pets)
+
+        initListeners()
+    }
+
+    private fun initListeners() {
+        binding.btnChat.setOnClickListener {
+            findNavController().navigate(R.id.action_ongFragment_to_chatFragment)
+        }
     }
 }
