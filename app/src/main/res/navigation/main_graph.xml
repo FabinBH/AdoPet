@@ -51,7 +51,9 @@
             tools:layout="@layout/fragment_recover_password"/>
         <action
             android:id="@+id/action_global_adoptionFragment"
-            app:destination="@id/adoptionFragment" />
+            app:destination="@id/adoptionFragment"
+            app:popUpTo="@id/loginFragment3"
+            app:popUpToInclusive="true" />
     </navigation>
     <fragment
         android:id="@+id/adoptionFragment"
@@ -94,7 +96,7 @@
         tools:layout="@layout/fragment_filter"/>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.projetopi.ui.auth.RegisterFragment"
+        android:name="com.example.projetopi.ui.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register">
         <action
