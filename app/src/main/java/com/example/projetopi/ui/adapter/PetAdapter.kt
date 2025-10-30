@@ -3,16 +3,13 @@ package com.example.projetopi.ui.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetopi.data.model.Pet
-import com.example.projetopi.data.model.Status
 import com.example.projetopi.databinding.ItemAdopetBinding
 
-class PetAdapter(
+class PetAdapter (
     private val context: Context,
     private val taskSelected: (Pet, Int) -> Unit
 ): ListAdapter<Pet, PetAdapter.MyViewHolder>(DIFF_CALBACK) {
