@@ -29,12 +29,12 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // initListeners()
+        initListeners()
     }
 
-    /*private fun initListeners() {
-        binding.imageButton.setOnClickListener {
-            findNavController()
+    private fun initListeners() {
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
         }
-    }*/
+    }
 }
