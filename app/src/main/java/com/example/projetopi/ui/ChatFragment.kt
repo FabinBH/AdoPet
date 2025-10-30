@@ -32,11 +32,11 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav)
+        /*val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav)
 
         bottomNav.menu.setGroupCheckable(0, true, false)
         for (i in 0 until bottomNav.menu.size) {
             bottomNav.menu.getItem(i).isChecked = false
-        }
+        }*/
     }
 }
