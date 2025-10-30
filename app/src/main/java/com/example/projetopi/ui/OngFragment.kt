@@ -37,6 +37,7 @@ class OngFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initListeners()
 
         recyclerView = view.findViewById(R.id.recyclerViewONG)
 
@@ -61,8 +62,6 @@ class OngFragment : Fragment() {
         )
 
         adapter.submitList(pets)
-
-        initListeners()
     }
 
     private fun initListeners() {

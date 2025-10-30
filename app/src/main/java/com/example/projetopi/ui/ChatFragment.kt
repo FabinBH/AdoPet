@@ -11,6 +11,7 @@ import com.example.projetopi.databinding.FragmentChatBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.core.view.get
 import androidx.core.view.size
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetopi.data.model.Chat
@@ -62,11 +63,12 @@ class ChatFragment : Fragment() {
 
         adapter.submitList(chat)
 
-        /*val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav)
+        initListener()
+    }
 
-        bottomNav.menu.setGroupCheckable(0, true, false)
-        for (i in 0 until bottomNav.menu.size) {
-            bottomNav.menu.getItem(i).isChecked = false
-        }*/
+    private fun initListener() {
+        binding.btnChat.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }
