@@ -9,11 +9,10 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.projetopi.R
 import com.example.projetopi.databinding.FragmentSignupBinding
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
 
 class SignupFragment : Fragment() {
+
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
@@ -23,7 +22,7 @@ class SignupFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSignupBinding.inflate(inflater, container, false)
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
         return binding.root
     }
 
@@ -34,43 +33,51 @@ class SignupFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            reload()
-        }
-
         initListeners()
     }
 
-    private fun reload() {  }
-
-    private fun signUp(email: String, password: String) {
-        try {
-            val auth = FirebaseAuth.getInstance()
-
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        findNavController().navigate(R.id.action_global_adoptionFragment)
-                    } else {
-                        Toast.makeText(requireContext(), task.exception?.message, Toast.LENGTH_SHORT).show()
-                    }
-                }
-        } catch (e: Exception) {
-            Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_SHORT).show()
-        }
-    }
-
     private fun initListeners() {
+        // Botão de cadastro
         binding.buttonEntrar.setOnClickListener {
-            findNavController().navigate(R.id.adoptionFragment)
+            val email = binding.etEmail.text.toString().trim()
+            val password = binding.etSenha.text.toString().trim()
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(requireContext(), "Preencha todos os campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            signUp(email, password)
         }
+
+        // Link "Já tenho conta"
         binding.tvLogin.setOnClickListener {
             findNavController().navigate(R.id.loginFragment3)
         }
+
+        // Botão de voltar para tela inicial (dashboard)
         binding.imageButton.setOnClickListener {
-            findNavController().navigate(R.id.dashboardFragment)
+            findNavController().popBackStack()
         }
+    }
+
+    private fun signUp(email: String, password: String) {
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(requireContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+
+                    // Navega para tela principal após cadastro
+                    findNavController().navigate(
+                        R.id.action_global_adoptionFragment,
+                        null,
+                        androidx.navigation.NavOptions.Builder()
+                            .setPopUpTo(R.id.authentication, true)
+                            .build()
+                    )
+                } else {
+                    Toast.makeText(requireContext(), task.exception?.message ?: "Erro no cadastro", Toast.LENGTH_LONG).show()
+                }
+            }
     }
 }
