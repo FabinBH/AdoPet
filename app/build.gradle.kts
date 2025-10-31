@@ -57,7 +57,6 @@ dependencies {
     implementation("com.firebaseui:firebase-ui-auth:9.0.0")
     implementation("com.google.firebase:firebase-auth")
     implementation(libs.navigation.fragment.ktx)
-    implementation(libs.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

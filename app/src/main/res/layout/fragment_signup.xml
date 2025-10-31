@@ -133,14 +133,14 @@
         android:id="@+id/buttonEntrar"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="256dp"
         android:backgroundTint="#FE8C00"
-        android:text="Entrar"
-        android:textColor="@android:color/white"
         android:fontFamily="@font/afacadbold"
+        android:text="Criar conta"
+        android:textColor="@android:color/white"
         android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etSenha" />
 
