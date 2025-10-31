@@ -5,6 +5,12 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Pet (
-    val id: Int,
-    val adopted: Status = Status.NOT_ADOPTED
+    val descricao: String? = null,
+    val disponivel: Boolean = true,
+    val dono: String? = null,
+    val especie: String? = null,
+    val fotoUrl: String? = null,
+    val idade: Int? = null,
+    val nome: String? = null,
+    val raca: String? = null
 ): Parcelable

@@ -54,12 +54,12 @@ class AdoptionFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val pets = listOf(
+        /*val pets = listOf(
             Pet(1, Status.NOT_ADOPTED),
             Pet(2, Status.NOT_ADOPTED)
-        )
+        )*/
 
-        adapter.submitList(pets)
+        //adapter.submitList(pets)
 
         initListeners()
     }
