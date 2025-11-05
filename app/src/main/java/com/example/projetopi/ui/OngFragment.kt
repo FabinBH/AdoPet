@@ -10,15 +10,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetopi.R
-import com.example.projetopi.data.model.Pet
-import com.example.projetopi.data.model.Status
+import com.example.projetopi.data.model.Ong
 import com.example.projetopi.databinding.FragmentOngBinding
+import com.example.projetopi.ui.adapter.OngAdapter
 import com.example.projetopi.ui.adapter.PetAdapter
 
 class OngFragment : Fragment() {
     private var _binding: FragmentOngBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: PetAdapter
+    private lateinit var adapter: OngAdapter
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
@@ -41,12 +41,12 @@ class OngFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.recyclerViewONG)
 
-        adapter = PetAdapter(requireContext()) { pet, action ->
+        adapter = OngAdapter(requireContext()) { ong, action ->
             when (action) {
-                PetAdapter.SELECT_DETAILS -> {
+                OngAdapter.SELECT_DETAILS -> {
                     Toast.makeText(requireContext(), "Detalhes do animal", Toast.LENGTH_SHORT).show()
                 }
-                PetAdapter.SELECT_ADOPT -> {
+                OngAdapter.SELECT_ADOPT -> {
                     Toast.makeText(requireContext(), "Doar para ONG", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -55,13 +55,13 @@ class OngFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val pets = listOf(
-            Pet(1, adopted = Status.NOT_ADOPTED),
-            Pet(2, adopted = Status.NOT_ADOPTED),
-            Pet(3, adopted = Status.NOT_ADOPTED)
+        val ongs = listOf(
+            Ong(1, "Ampara"),
+            Ong(2, "Pata"),
+            Ong(3, "Eliabe")
         )
 
-        adapter.submitList(pets)
+        adapter.submitList(ongs)
     }
 
     private fun initListeners() {

@@ -6,28 +6,28 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.projetopi.data.model.Pet
+import com.example.projetopi.data.model.Ong
 import com.example.projetopi.databinding.ItemAdopetBinding
 
-class PetAdapter (
+class OngAdapter (
     private val context: Context,
-    private val taskSelected: (Pet, Int) -> Unit
-): ListAdapter<Pet, PetAdapter.MyViewHolder>(DIFF_CALBACK) {
+    private val taskSelected: (Ong, Int) -> Unit
+): ListAdapter<Ong, OngAdapter.MyViewHolder>(DIFF_CALBACK) {
 
     companion object {
         val SELECT_DETAILS = 1
         val SELECT_ADOPT = 2
-        private val DIFF_CALBACK = object : DiffUtil.ItemCallback<Pet>() {
+        private val DIFF_CALBACK = object : DiffUtil.ItemCallback<Ong>() {
             override fun areItemsTheSame(
-                oldItem: Pet, newItem: Pet
+                oldItem: Ong, newItem: Ong
             ): Boolean {
-                return oldItem.nome == newItem.nome && oldItem.disponivel == newItem.disponivel
+                return oldItem.id == newItem.id && oldItem.nome == newItem.nome
             }
 
             override fun areContentsTheSame(
-                oldItem: Pet, newItem: Pet
+                oldItem: Ong, newItem: Ong
             ): Boolean {
-                return oldItem == newItem && oldItem.disponivel == newItem.disponivel
+                return oldItem == newItem && oldItem.nome == newItem.nome
             }
         }
     }
@@ -38,7 +38,7 @@ class PetAdapter (
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val pet = getItem(position)
+        val ong = getItem(position)
         //holder.binding.textDescription.text = pet.description
 
         //setIndicators(pet, holder)
