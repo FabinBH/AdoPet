@@ -1,6 +1,8 @@
 package com.example.projetopi.ui.adapter
 
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,34 +11,62 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.projetopi.data.model.Chat
 import com.example.projetopi.databinding.ItemChatBinding
 
-class ChatAdapter (
+class ChatAdapter(
     private val context: Context,
-    private val chatTitle: (Chat, Int) -> Unit
-): ListAdapter<Chat, ChatAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    private val chatListener: (Chat, Int) -> Unit
+) : ListAdapter<Chat, ChatAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        val SELECT_CHAT = 1
+        const val SELECT_CHAT = 1
+
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Chat>() {
             override fun areItemsTheSame(oldItem: Chat, newItem: Chat): Boolean {
-                return oldItem.id == newItem.id && oldItem.name == newItem.name
+                return oldItem.id == newItem.id && oldItem.nome == newItem.nome
             }
 
             override fun areContentsTheSame(oldItem: Chat, newItem: Chat): Boolean {
-                return oldItem == newItem && oldItem.name == newItem.name
+                return oldItem == newItem
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = ItemChatBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(view)
+        val binding = ItemChatBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
+        val chat = getItem(position)
+        holder.bind(chat)
     }
 
-    inner class MyViewHolder(val binding: ItemChatBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(private val binding: ItemChatBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
+        fun bind(chat: Chat) {
+            // Nome
+            binding.profileName.text = chat.nome
+
+            // Imagem (Base64 → Bitmap)
+            if (!chat.fotoBase64.isNullOrEmpty()) {
+                try {
+                    val bytes = Base64.decode(chat.fotoBase64, Base64.DEFAULT)
+                    val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                    binding.profilePhoto.setImageBitmap(bitmap)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    // Caso a imagem Base64 esteja inválida
+                    binding.profilePhoto.setImageResource(android.R.drawable.ic_menu_report_image)
+                }
+            } else {
+                // Imagem padrão se não tiver foto
+                binding.profilePhoto.setImageResource(android.R.drawable.ic_menu_report_image)
+            }
+
+            // Clique no item
+            binding.root.setOnClickListener {
+                chatListener(chat, SELECT_CHAT)
+            }
+        }
     }
 }

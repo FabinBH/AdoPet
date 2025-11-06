@@ -1,21 +1,22 @@
 package com.example.projetopi.ui
 
 import android.os.Bundle
+import android.util.Base64
+import android.graphics.BitmapFactory
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.projetopi.R
-import com.example.projetopi.databinding.FragmentChatBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.core.view.get
-import androidx.core.view.size
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projetopi.R
 import com.example.projetopi.data.model.Chat
+import com.example.projetopi.data.model.PessoaFisica
+import com.example.projetopi.databinding.FragmentChatBinding
 import com.example.projetopi.ui.adapter.ChatAdapter
+import com.google.firebase.database.*
+import com.google.firebase.database.DatabaseReference
 
 class ChatFragment : Fragment() {
 
@@ -23,6 +24,7 @@ class ChatFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: ChatAdapter
     private lateinit var recyclerView: RecyclerView
+    private lateinit var database: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +43,7 @@ class ChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerView = view.findViewById(R.id.recyclerViewChat)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         adapter = ChatAdapter(requireContext()) { chat, action ->
             when (action) {
@@ -51,24 +54,48 @@ class ChatFragment : Fragment() {
         }
 
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val chat = listOf(
-            Chat(1, "Elibe"),
-            Chat(2, "Tonin"),
-            Chat(3, "Bill"),
-            Chat(4, "Thegas"),
-            Chat(5, "Dudi"),
-        )
+        // Referência principal (usuarios)
+        database = FirebaseDatabase.getInstance().getReference("usuarios")
 
-        adapter.submitList(chat)
-
+        carregarUsuariosPessoaFisica()
         initListener()
+    }
+
+    private fun carregarUsuariosPessoaFisica() {
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val listaChats = mutableListOf<Chat>()
+
+                for (userSnap in snapshot.children) {
+                    val pessoaFisicaSnap = userSnap.child("cadastro").child("PessoaFisica")
+
+                    if (pessoaFisicaSnap.exists()) {
+                        val pessoa = pessoaFisicaSnap.getValue(PessoaFisica::class.java)
+                        if (pessoa?.nome != null) {
+                            listaChats.add(
+                                Chat(
+                                    id = userSnap.key?.hashCode() ?: 0,
+                                    nome = pessoa.nome,
+                                    fotoBase64 = pessoa.fotoUrl
+                                )
+                            )
+                        }
+                    }
+                }
+
+                adapter.submitList(listaChats)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Erro ao carregar usuários", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun initListener() {
         binding.btnChat.setOnClickListener {
-            findNavController().popBackStack()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
 }
