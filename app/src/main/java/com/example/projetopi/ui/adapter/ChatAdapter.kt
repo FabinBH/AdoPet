@@ -44,10 +44,8 @@ class ChatAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(chat: Chat) {
-            // Nome
             binding.profileName.text = chat.nome
 
-            // Imagem (Base64 → Bitmap)
             if (!chat.fotoBase64.isNullOrEmpty()) {
                 try {
                     val bytes = Base64.decode(chat.fotoBase64, Base64.DEFAULT)
@@ -55,15 +53,12 @@ class ChatAdapter(
                     binding.profilePhoto.setImageBitmap(bitmap)
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    // Caso a imagem Base64 esteja inválida
                     binding.profilePhoto.setImageResource(android.R.drawable.ic_menu_report_image)
                 }
             } else {
-                // Imagem padrão se não tiver foto
                 binding.profilePhoto.setImageResource(android.R.drawable.ic_menu_report_image)
             }
 
-            // Clique no item
             binding.root.setOnClickListener {
                 chatListener(chat, SELECT_CHAT)
             }
