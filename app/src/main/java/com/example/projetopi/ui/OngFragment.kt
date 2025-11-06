@@ -1,11 +1,10 @@
 package com.example.projetopi.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,13 +12,15 @@ import com.example.projetopi.R
 import com.example.projetopi.data.model.Ong
 import com.example.projetopi.databinding.FragmentOngBinding
 import com.example.projetopi.ui.adapter.OngAdapter
-import com.example.projetopi.ui.adapter.PetAdapter
+import com.google.firebase.database.*
 
 class OngFragment : Fragment() {
+
     private var _binding: FragmentOngBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: OngAdapter
     private lateinit var recyclerView: RecyclerView
+    private lateinit var database: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,33 +41,55 @@ class OngFragment : Fragment() {
         initListeners()
 
         recyclerView = view.findViewById(R.id.recyclerViewONG)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         adapter = OngAdapter(requireContext()) { ong, action ->
             when (action) {
                 OngAdapter.SELECT_DETAILS -> {
-                    Toast.makeText(requireContext(), "Detalhes do animal", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.ongDetailsFragment)
                 }
                 OngAdapter.SELECT_ADOPT -> {
-                    Toast.makeText(requireContext(), "Doar para ONG", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.adoptionConfirmationFragment)
                 }
             }
         }
 
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val ongs = listOf(
-            Ong(1, "Ampara"),
-            Ong(2, "Pata"),
-            Ong(3, "Eliabe")
-        )
+        database = FirebaseDatabase.getInstance()
+            .getReferenceFromUrl("https://adopet-pi-default-rtdb.firebaseio.com/")
+            .child("usuarios")
 
-        adapter.submitList(ongs)
+        carregarOngs()
     }
 
     private fun initListeners() {
         binding.btnChat.setOnClickListener {
             findNavController().navigate(R.id.action_ongFragment_to_chatFragment)
         }
+    }
+
+    private fun carregarOngs() {
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val lista = mutableListOf<Ong>()
+
+                for (usuarioSnapshot in snapshot.children) {
+                    val cadastro = usuarioSnapshot.child("cadastro").child("PessoaJuridica")
+                    if (cadastro.exists()) {
+                        val id = usuarioSnapshot.key ?: ""
+                        val nome = cadastro.child("nome").getValue(String::class.java) ?: ""
+                        val fotoUrl = cadastro.child("fotoUrl").getValue(String::class.java) ?: ""
+                        lista.add(Ong(id, nome, fotoUrl))
+                    }
+                }
+
+                adapter.submitList(lista)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // opcional: tratar erro
+            }
+        })
     }
 }

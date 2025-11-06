@@ -18,14 +18,14 @@
             android:padding="12dp">
 
             <ImageView
-                android:id="@+id/imgPet"
+                android:id="@+id/imgOng"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/cachorro" />
 
             <TextView
-                android:id="@+id/txtPetName"
+                android:id="@+id/txtOngName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

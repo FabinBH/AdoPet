@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetopi.R
 import com.example.projetopi.data.model.Pet
-import com.example.projetopi.data.model.Status
 import com.example.projetopi.databinding.FragmentAdoptionBinding
 import com.example.projetopi.ui.adapter.PetAdapter
 

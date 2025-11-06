@@ -1,6 +1,8 @@
 package com.example.projetopi.ui.adapter
 
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,55 +11,54 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.projetopi.data.model.Ong
 import com.example.projetopi.databinding.ItemAdopetBinding
 
-class OngAdapter (
+class OngAdapter(
     private val context: Context,
-    private val taskSelected: (Ong, Int) -> Unit
-): ListAdapter<Ong, OngAdapter.MyViewHolder>(DIFF_CALBACK) {
+    private val ongSelected: (Ong, Int) -> Unit
+) : ListAdapter<Ong, OngAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        val SELECT_DETAILS = 1
-        val SELECT_ADOPT = 2
-        private val DIFF_CALBACK = object : DiffUtil.ItemCallback<Ong>() {
-            override fun areItemsTheSame(
-                oldItem: Ong, newItem: Ong
-            ): Boolean {
-                return oldItem.id == newItem.id && oldItem.nome == newItem.nome
+        const val SELECT_DETAILS = 1
+        const val SELECT_ADOPT = 2
+
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Ong>() {
+            override fun areItemsTheSame(oldItem: Ong, newItem: Ong): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(
-                oldItem: Ong, newItem: Ong
-            ): Boolean {
-                return oldItem == newItem && oldItem.nome == newItem.nome
+            override fun areContentsTheSame(oldItem: Ong, newItem: Ong): Boolean {
+                return oldItem == newItem
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = ItemAdopetBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(view)
+        val binding = ItemAdopetBinding.inflate(LayoutInflater.from(context), parent, false)
+        return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val ong = getItem(position)
-        //holder.binding.textDescription.text = pet.description
-
-        //setIndicators(pet, holder)
+        holder.bind(ong)
     }
 
-    /*private fun setIndicators(pet: Pet, holder: MyViewHolder){
-        when(pet.adopted){
-            Status.NOT_ADOPTED -> {
-                holder.binding.btnDetalhes.isVisible = false
-                holder.binding.btnDetalhes.setOnClickListener { taskSelected(task, SELECT_NEXT) }
+    inner class MyViewHolder(val binding: ItemAdopetBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(ong: Ong) {
+            binding.txtOngName.text = ong.nome
+
+            if (ong.fotoUrl.isNotEmpty()) {
+                try {
+                    val imageBytes = Base64.decode(ong.fotoUrl, Base64.DEFAULT)
+                    val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                    binding.imgOng.setImageBitmap(decodedImage)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
 
+            binding.btnAdotar.setOnClickListener { ongSelected(ong, SELECT_ADOPT) }
+            binding.btnDetalhes.setOnClickListener { ongSelected(ong, SELECT_DETAILS) }
         }
-        holder.binding.buttonDelete.setOnClickListener { taskSelected(task, SELECT_REMOVER)}
-        holder.binding.buttonEditar.setOnClickListener { taskSelected(task, SELECT_EDIT) }
-        holder.binding.buttonDetails.setOnClickListener { taskSelected(task, SELECT_DETAILS) }
-    }*/
-
-    inner class MyViewHolder(val binding: ItemAdopetBinding): RecyclerView.ViewHolder(binding.root) {
-
     }
 }
