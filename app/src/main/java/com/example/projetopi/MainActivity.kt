@@ -22,8 +22,9 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.adoptionFragment,
                 R.id.ongFragment,
-                // R.id.chatFragment,
                 R.id.socialFragment,
+                R.id.ongDetailsFragment,
+                R.id.animalDetailsFragment,
                 R.id.profileFragment -> bottomNav.visibility = View.VISIBLE
                 else -> bottomNav.visibility = View.GONE
             }
