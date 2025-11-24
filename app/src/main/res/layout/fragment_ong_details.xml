@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Botão voltar -->
         <ImageButton
             android:id="@+id/btnVoltarInstituto"
             android:layout_width="40dp"
@@ -20,7 +19,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Imagem/logo -->
         <ImageView
             android:id="@+id/imgInstituto"
             android:layout_width="0dp"
@@ -31,7 +29,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Nome do instituto -->
         <TextView
             android:id="@+id/txtNomeInstituto"
             android:layout_width="wrap_content"
@@ -45,7 +42,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- CNPJ -->
         <TextView
             android:id="@+id/txtCnpj"
             android:layout_width="wrap_content"
@@ -58,7 +54,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Banco -->
         <TextView
             android:id="@+id/txtBanco"
             android:layout_width="wrap_content"
@@ -71,7 +66,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Título: O que precisamos -->
         <TextView
             android:id="@+id/txtTituloNecessidades"
             android:layout_width="wrap_content"
@@ -85,7 +79,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Texto explicativo -->
         <TextView
             android:id="@+id/txtDescricaoInstituto"
             android:layout_width="0dp"
@@ -99,7 +92,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Texto "Nos mande uma mensagem" -->
         <TextView
             android:id="@+id/txtMandeMensagem"
             android:layout_width="wrap_content"
@@ -113,7 +105,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Botão enviar mensagem -->
         <Button
             android:id="@+id/btnEnviarMensagem"
             android:layout_width="0dp"
