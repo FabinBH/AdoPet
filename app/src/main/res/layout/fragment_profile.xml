@@ -395,7 +395,7 @@
         android:src="@drawable/baseline_arrow_back_ios_24"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonLogout"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:layout_marginTop="580dp"
