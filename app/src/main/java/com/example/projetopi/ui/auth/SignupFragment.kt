@@ -55,7 +55,6 @@ class SignupFragment : Fragment() {
             findNavController().navigate(R.id.loginFragment3)
         }
 
-        // Botão de voltar para tela inicial (dashboard)
         binding.imageButton.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -65,16 +64,21 @@ class SignupFragment : Fragment() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    val uid = auth.currentUser?.uid
                     Toast.makeText(requireContext(), "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
 
-                    // Navega para tela principal após cadastro
-                    findNavController().navigate(
-                        R.id.action_global_adoptionFragment,
-                        null,
-                        androidx.navigation.NavOptions.Builder()
-                            .setPopUpTo(R.id.authentication, true)
-                            .build()
-                    )
+                    if (uid != null) {
+                        val bundle = Bundle().apply {
+                            putString("user_uid", uid)
+                            putString("user_email", email)
+                        }
+
+                        findNavController().navigate(R.id.action_signupFragment2_to_locateFragment, bundle)
+
+                    } else {
+                        Toast.makeText(requireContext(), "Erro: UID não encontrado.", Toast.LENGTH_LONG).show()
+                    }
+
                 } else {
                     Toast.makeText(requireContext(), task.exception?.message ?: "Erro no cadastro", Toast.LENGTH_LONG).show()
                 }
