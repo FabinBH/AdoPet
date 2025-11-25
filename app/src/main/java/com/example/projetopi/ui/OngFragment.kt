@@ -48,9 +48,9 @@ class OngFragment : Fragment() {
                 OngAdapter.SELECT_DETAILS -> {
                     findNavController().navigate(R.id.ongDetailsFragment)
                 }
-                OngAdapter.SELECT_ADOPT -> {
+                /*OngAdapter.SELECT_ADOPT -> {
                     findNavController().navigate(R.id.adoptionConfirmationFragment)
-                }
+                }*/
             }
         }
 

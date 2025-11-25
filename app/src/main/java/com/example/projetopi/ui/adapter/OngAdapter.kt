@@ -18,7 +18,7 @@ class OngAdapter(
 
     companion object {
         const val SELECT_DETAILS = 1
-        const val SELECT_ADOPT = 2
+        //const val SELECT_ADOPT = 2
 
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Ong>() {
             override fun areItemsTheSame(oldItem: Ong, newItem: Ong): Boolean {
@@ -57,7 +57,7 @@ class OngAdapter(
                 }
             }
 
-            binding.btnAdotar.setOnClickListener { ongSelected(ong, SELECT_ADOPT) }
+            //binding.btnAdotar.setOnClickListener { ongSelected(ong, SELECT_ADOPT) }
             binding.btnDetalhes.setOnClickListener { ongSelected(ong, SELECT_DETAILS) }
         }
     }

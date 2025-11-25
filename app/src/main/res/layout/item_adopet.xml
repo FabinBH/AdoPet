@@ -41,17 +41,8 @@
                 android:layout_marginTop="12dp">
 
                 <Button
-                    android:id="@+id/btnAdotar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:backgroundTint="@color/orange"
-                    android:text="Adotar"
-                    android:textColor="@android:color/white" />
-
-                <Button
                     android:id="@+id/btnDetalhes"
-                    android:layout_width="wrap_content"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:backgroundTint="@color/orange"

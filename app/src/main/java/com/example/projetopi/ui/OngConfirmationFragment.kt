@@ -1,24 +1,24 @@
 package com.example.projetopi.ui
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.projetopi.R
-import com.example.projetopi.databinding.FragmentOngDetailsBinding
+import com.example.projetopi.databinding.FragmentOngConfirmationBinding
 
-class OngDetailsFragment : Fragment() {
+class OngConfirmationFragment : Fragment() {
 
-    private var _binding: FragmentOngDetailsBinding? = null
+    private var _binding: FragmentOngConfirmationBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOngDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentOngConfirmationBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,11 +33,9 @@ class OngDetailsFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.btnVoltarInstituto.setOnClickListener {
+        binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
-        }
-        binding.btnEnviarMensagem.setOnClickListener {
-            findNavController().navigate(R.id.ongConfirmationFragment)
+            findNavController().popBackStack()
         }
     }
 }

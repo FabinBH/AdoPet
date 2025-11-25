@@ -157,7 +157,7 @@
         tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.projetopi.ui.ProfileFragment"
+        android:name="ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -186,5 +186,14 @@
         <action
             android:id="@+id/action_ongDetailsFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ongConfirmationFragment"
+        android:name="com.example.projetopi.ui.OngConfirmationFragment"
+        android:label="fragment_ong_confirmation"
+        tools:layout="@layout/fragment_ong_confirmation" >
+        <action
+            android:id="@+id/action_ongConfirmationFragment_to_ongFragment"
+            app:destination="@id/ongFragment" />
     </fragment>
 </navigation>

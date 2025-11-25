@@ -33,7 +33,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun initListeners() {
-        binding.btnBack.setOnClickListener {
+        binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
     }
