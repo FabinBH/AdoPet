@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.ChoosePersonFragment">
+    tools:context=".ui.auth.ChoosePersonFragment">
 
     <ImageButton
         android:id="@+id/btnVoltar"
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/afacadbold"
-        android:text="Como deseja se cadastrar"
+        android:text="Como deseja se cadastrar?"
         android:textSize="32sp"
         android:textAlignment="center"
         android:layout_marginTop="60dp"

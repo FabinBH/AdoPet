@@ -88,7 +88,7 @@
         </fragment>
         <fragment
             android:id="@+id/choosePersonFragment"
-            android:name="com.example.projetopi.ui.ChoosePersonFragment"
+            android:name="com.example.projetopi.ui.auth.ChoosePersonFragment"
             android:label="fragment_choose_person"
             tools:layout="@layout/fragment_choose_person" >
             <action
