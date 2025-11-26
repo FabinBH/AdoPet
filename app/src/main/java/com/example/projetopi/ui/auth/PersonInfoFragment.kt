@@ -1,4 +1,4 @@
-package com.example.projetopi.ui
+package com.example.projetopi.ui.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

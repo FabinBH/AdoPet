@@ -60,7 +60,7 @@
             app:popUpToInclusive="true" />
         <fragment
             android:id="@+id/ongInfoFragment"
-            android:name="com.example.projetopi.ui.OngInfoFragment"
+            android:name="com.example.projetopi.ui.auth.OngInfoFragment"
             android:label="fragment_ong_info"
             tools:layout="@layout/fragment_ong_info" >
             <action
@@ -69,17 +69,17 @@
         </fragment>
         <fragment
             android:id="@+id/ongInfo2Fragment"
-            android:name="com.example.projetopi.ui.OngInfo2Fragment"
+            android:name="com.example.projetopi.ui.auth.OngInfo2Fragment"
             android:label="fragment_ong_info2"
             tools:layout="@layout/fragment_ong_info2" />
         <fragment
             android:id="@+id/personInfoFragment"
-            android:name="com.example.projetopi.ui.PersonInfoFragment"
+            android:name="com.example.projetopi.ui.auth.PersonInfoFragment"
             android:label="fragment_person_info"
             tools:layout="@layout/fragment_person_info" />
         <fragment
             android:id="@+id/locateFragment"
-            android:name="com.example.projetopi.ui.LocateFragment"
+            android:name="com.example.projetopi.ui.auth.LocateFragment"
             android:label="fragment_locate"
             tools:layout="@layout/fragment_locate" >
             <action
