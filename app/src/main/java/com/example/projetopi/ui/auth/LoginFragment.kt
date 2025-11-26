@@ -64,7 +64,7 @@ class LoginFragment : Fragment() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    findNavController().navigate(R.id.action_global_adoptionFragment)
+                    findNavController().navigate(R.id.action_global_socialFragment)
                 } else {
                     Toast.makeText(requireContext(), "Erro: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }

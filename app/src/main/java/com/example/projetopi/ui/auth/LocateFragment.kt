@@ -21,7 +21,6 @@ class LocateFragment : Fragment() {
 
     private val database = Firebase.database.reference
 
-    // Variáveis para armazenar o UID e Email passados
     private var userUid: String? = null
     private var userEmail: String? = null
 
@@ -36,7 +35,6 @@ class LocateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 1. Recebe o UID e Email passados pelo SignupFragment
         userUid = arguments?.getString("user_uid")
         userEmail = arguments?.getString("user_email")
 

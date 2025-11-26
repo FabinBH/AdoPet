@@ -127,7 +127,7 @@ class OngInfo2Fragment : Fragment() {
                 val key = parts[0]
                 val value = parts[1]
 
-                val finalValue: Any = when (value.toLowerCase()) {
+                val finalValue: Any = when (value.lowercase()) {
                     "true" -> true
                     "false" -> false
                     else -> value
