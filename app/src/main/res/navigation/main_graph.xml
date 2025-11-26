@@ -53,11 +53,6 @@
             android:name="com.example.projetopi.ui.auth.RecoverPasswordFragment"
             android:label="RecoverPasswordFragment"
             tools:layout="@layout/fragment_recover_password"/>
-        <action
-            android:id="@+id/action_global_adoptionFragment"
-            app:destination="@id/adoptionFragment"
-            app:popUpTo="@id/loginFragment3"
-            app:popUpToInclusive="true" />
         <fragment
             android:id="@+id/ongInfoFragment"
             android:name="com.example.projetopi.ui.auth.OngInfoFragment"
@@ -98,6 +93,9 @@
                 android:id="@+id/action_choosePersonFragment_to_personInfoFragment"
                 app:destination="@id/personInfoFragment" />
         </fragment>
+        <action
+            android:id="@+id/action_global_socialFragment"
+            app:destination="@id/socialFragment" />
     </navigation>
     <fragment
         android:id="@+id/adoptionFragment"

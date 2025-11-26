@@ -1,60 +1,145 @@
 package com.example.projetopi.ui.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.projetopi.R
+import com.example.projetopi.databinding.FragmentOngInfo2Binding
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
+import java.util.concurrent.TimeUnit
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [OngInfo2Fragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class OngInfo2Fragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentOngInfo2Binding? = null
+    private val binding get() = _binding!!
+
+    private val database = Firebase.database.reference
+    private var userUid: String? = null
+    private var ongDataPart1: MutableMap<String, Any> = mutableMapOf()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ong_info2, container, false)
+    ): View {
+        _binding = FragmentOngInfo2Binding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment OngInfo2Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OngInfo2Fragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        userUid = arguments?.getString("user_uid")
+        val dataString = arguments?.getString(OngInfoFragment.ONG_DATA_BUNDLE)
+
+        if (userUid.isNullOrEmpty() || dataString.isNullOrEmpty()) {
+            Toast.makeText(requireContext(), "Erro: Dados de cadastro ausentes.", Toast.LENGTH_LONG).show()
+            findNavController().popBackStack(R.id.authentication, true)
+            return
+        }
+
+        ongDataPart1 = stringToMap(dataString)
+
+        setupViews()
+        initListeners()
+    }
+
+    private fun setupViews() {
+        val cnpjFromPart1 = ongDataPart1["cnpj"] as? String ?: "CNPJ não encontrado"
+        binding.editTextCnpj.setText(cnpjFromPart1)
+        binding.editTextCnpj.isEnabled = false
+
+        binding.titleText.text = "Informações de Contato e Necessidades"
+    }
+
+    private fun initListeners() {
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        binding.registerButton.setOnClickListener {
+            val dadosPart2 = collectOngDataPart2()
+
+            if (dadosPart2 != null) {
+                val dadosFinais = ongDataPart1.toMutableMap().apply {
+                    putAll(dadosPart2)
                 }
+                salvarDadosFinais(dadosFinais)
+            } else {
+                Toast.makeText(requireContext(), "Preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun collectOngDataPart2(): Map<String, Any>? {
+        val email = binding.editTextEmail.text.toString().trim()
+        val site = binding.editTextSite.text.toString().trim()
+        val telefone = binding.editTextTelefone.text.toString().trim()
+        val necessidade = binding.editTextNecessidade.text.toString().trim()
+
+        if (email.isEmpty() || necessidade.isEmpty()) return null
+
+        return mapOf(
+            "email" to email,
+            "site" to site,
+            "telefoneContato2" to telefone,
+            "necessidade" to necessidade
+        )
+    }
+
+    private fun salvarDadosFinais(dadosFinais: Map<String, Any>) {
+        val uid = userUid!!
+
+        val finalData = dadosFinais.toMutableMap().apply {
+            put("updatedAt", TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()))
+        }
+
+        val finalUpdateMap = mapOf(
+            "cadastro/Ong" to finalData
+        )
+
+        database.child(uid).updateChildren(finalUpdateMap)
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "Cadastro ONG finalizado com sucesso!", Toast.LENGTH_LONG).show()
+
+                findNavController().navigate(
+                    R.id.action_global_socialFragment,
+                    null,
+                    androidx.navigation.NavOptions.Builder()
+                        .setPopUpTo(R.id.authentication, true)
+                        .build()
+                )
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Falha ao finalizar cadastro da ONG: ${it.message}", Toast.LENGTH_LONG).show()
+            }
+    }
+
+    private fun stringToMap(dataString: String): MutableMap<String, Any> {
+        val map = mutableMapOf<String, Any>()
+        dataString.split(";").forEach { entry ->
+            val parts = entry.split(":", limit = 2)
+            if (parts.size == 2) {
+                val key = parts[0]
+                val value = parts[1]
+
+                val finalValue: Any = when (value.toLowerCase()) {
+                    "true" -> true
+                    "false" -> false
+                    else -> value
+                }
+                map[key] = finalValue
+            }
+        }
+        return map
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
