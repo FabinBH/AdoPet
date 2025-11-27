@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Ong (
-    val id: String,
+    val id: Int,
     val nome: String,
-    val fotoUrl: String
+    val fotoUrl: String? = null
 ): Parcelable

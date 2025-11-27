@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetopi.R
 import com.example.projetopi.data.model.Ong
+import com.example.projetopi.data.model.PessoaJuridica
 import com.example.projetopi.databinding.FragmentOngBinding
 import com.example.projetopi.ui.adapter.OngAdapter
 import com.google.firebase.database.*
@@ -38,7 +40,6 @@ class OngFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initListeners()
 
         recyclerView = view.findViewById(R.id.recyclerViewONG)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -56,11 +57,10 @@ class OngFragment : Fragment() {
 
         recyclerView.adapter = adapter
 
-        database = FirebaseDatabase.getInstance()
-            .getReferenceFromUrl("https://adopet-pi-default-rtdb.firebaseio.com/")
-            .child("usuarios")
+        database = FirebaseDatabase.getInstance().getReference("usuarios")
 
         carregarOngs()
+        initListeners()
     }
 
     private fun initListeners() {
@@ -72,23 +72,34 @@ class OngFragment : Fragment() {
     private fun carregarOngs() {
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val lista = mutableListOf<Ong>()
+                val listaOngs = mutableListOf<Ong>()
 
                 for (usuarioSnapshot in snapshot.children) {
                     val cadastro = usuarioSnapshot.child("cadastro").child("PessoaJuridica")
+
                     if (cadastro.exists()) {
-                        val id = usuarioSnapshot.key ?: ""
+                        val ong = cadastro.getValue(Ong::class.java)
+                        if (ong?.nome != null) {
+                            listaOngs.add(
+                                Ong(
+                                    id = usuarioSnapshot.key?.hashCode() ?: 0,
+                                    nome = ong.nome,
+                                    fotoUrl = ong.fotoUrl
+                                )
+                            )
+                        }
+                        /*val id = usuarioSnapshot.key ?: ""
                         val nome = cadastro.child("nome").getValue(String::class.java) ?: ""
                         val fotoUrl = cadastro.child("fotoUrl").getValue(String::class.java) ?: ""
-                        lista.add(Ong(id, nome, fotoUrl))
+                        lista.add(Ong(id, nome, fotoUrl))*/
                     }
                 }
 
-                adapter.submitList(lista)
+                adapter.submitList(listaOngs)
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // opcional: tratar erro
+                Toast.makeText(requireContext(), "Erro ao carregar usuários", Toast.LENGTH_SHORT).show()
             }
         })
     }

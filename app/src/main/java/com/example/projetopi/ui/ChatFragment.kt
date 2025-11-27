@@ -27,7 +27,8 @@ class ChatFragment : Fragment() {
     private lateinit var database: DatabaseReference
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChatBinding.inflate(inflater, container, false)
@@ -55,7 +56,6 @@ class ChatFragment : Fragment() {
 
         recyclerView.adapter = adapter
 
-        // Referência principal (usuarios)
         database = FirebaseDatabase.getInstance().getReference("usuarios")
 
         carregarUsuariosPessoaFisica()

@@ -45,24 +45,21 @@ class OngAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(ong: Ong) {
-            // 1. Exibir o Nome
             binding.txtOngName.text = ong.nome
 
-            // 2. Decodificar e Exibir a Imagem Base64
-            if (ong.fotoUrl.isNotEmpty()) {
+            if (!ong.fotoUrl.isNullOrEmpty()) {
                 try {
                     val imageBytes = Base64.decode(ong.fotoUrl, Base64.DEFAULT)
                     val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
                     binding.imgOng.setImageBitmap(decodedImage)
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    // Se falhar, exibe um placeholder (se existir no seu projeto)
-                    // binding.imgOng.setImageResource(R.drawable.baseline_error_outline_24)
+                    binding.imgOng.setImageResource(android.R.drawable.ic_menu_report_image)
                 }
+            } else {
+                binding.imgOng.setImageResource(android.R.drawable.ic_menu_report_image)
             }
 
-            // 3. Configurar o clique
-            //binding.btnAdotar.setOnClickListener { ongSelected(ong, SELECT_ADOPT) }
             binding.btnDetalhes.setOnClickListener { ongSelected(ong, SELECT_DETAILS) }
         }
     }
