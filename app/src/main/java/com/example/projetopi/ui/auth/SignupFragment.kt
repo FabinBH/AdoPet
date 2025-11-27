@@ -81,7 +81,6 @@ class SignupFragment : Fragment() {
                             putString("user_email", email)
                         }
 
-
                         findNavController().navigate(R.id.action_signupFragment2_to_locateFragment, bundle)
 
                     } else {
@@ -95,9 +94,9 @@ class SignupFragment : Fragment() {
     }
 
     private fun salvarDadosUsuario(uid: String, username: String, email: String) {
-        val dbRef = db.reference
+        val dbRootRef = db.getReference()
 
-        val userNode = dbRef.child("usuarios").child(uid)
+        val userNode = dbRootRef.child("usuarios").child(uid)
 
         val userData = hashMapOf(
             "email" to email,
