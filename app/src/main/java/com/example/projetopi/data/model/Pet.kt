@@ -1,9 +1,5 @@
 package com.example.projetopi.data.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-@Parcelize
 data class Pet (
     val descricao: String? = null,
     val disponivel: Boolean = true,
@@ -13,4 +9,4 @@ data class Pet (
     val idade: Int? = null,
     val nome: String? = null,
     val raca: String? = null
-): Parcelable
+)

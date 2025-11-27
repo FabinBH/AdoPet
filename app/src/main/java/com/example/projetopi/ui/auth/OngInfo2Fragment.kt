@@ -99,10 +99,10 @@ class OngInfo2Fragment : Fragment() {
         }
 
         val finalUpdateMap = mapOf(
-            "cadastro/Ong" to finalData
+            "cadastro/PessoaJuridica" to finalData
         )
 
-        database.child(uid).updateChildren(finalUpdateMap)
+        database.child("usuarios").child(uid).updateChildren(finalUpdateMap)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Cadastro ONG finalizado com sucesso!", Toast.LENGTH_LONG).show()
 

@@ -102,7 +102,7 @@ class PersonInfoFragment : Fragment() {
             "cadastro/PessoaFisica" to dadosPessoais
         )
 
-        database.child(uid).updateChildren(finalUpdateMap)
+        database.child("usuarios").child(uid).updateChildren(finalUpdateMap)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Cadastro Pessoa Física concluído!", Toast.LENGTH_LONG).show()
 

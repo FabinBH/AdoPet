@@ -47,24 +47,24 @@ class ChoosePersonFragment : Fragment() {
         val bundle = Bundle().apply { putString("user_uid", uid) }
 
         binding.btnPessoa.setOnClickListener {
-            salvarTipoPerfil(uid, "PessoaFisica") {
+           // salvarTipoPerfil(uid, "PessoaFisica") {
                 findNavController().navigate(R.id.action_choosePersonFragment_to_personInfoFragment, bundle)
-            }
+           // }
         }
 
         binding.btnONG.setOnClickListener {
-            salvarTipoPerfil(uid, "Instituicao") {
+            //salvarTipoPerfil(uid, "Instituicao") {
                 findNavController().navigate(R.id.action_choosePersonFragment_to_ongInfoFragment, bundle)
-            }
+            //}
         }
     }
 
-    private fun salvarTipoPerfil(uid: String, tipo: String, onSuccess: () -> Unit) {
+    /*private fun salvarTipoPerfil(uid: String, tipo: String, onSuccess: () -> Unit) {
         val updateMap = mapOf(
             "tipoDePerfil" to tipo
         )
 
-        database.child(uid).updateChildren(updateMap)
+        database.child("usuarios").child(uid).updateChildren(updateMap)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Perfil '$tipo' selecionado.", Toast.LENGTH_SHORT).show()
                 onSuccess()
@@ -72,7 +72,7 @@ class ChoosePersonFragment : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Falha ao salvar o tipo de perfil: ${it.message}", Toast.LENGTH_LONG).show()
             }
-    }
+    }*/
 
     override fun onDestroyView() {
         super.onDestroyView()

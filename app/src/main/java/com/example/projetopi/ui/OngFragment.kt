@@ -78,12 +78,12 @@ class OngFragment : Fragment() {
                     val cadastro = usuarioSnapshot.child("cadastro").child("PessoaJuridica")
 
                     if (cadastro.exists()) {
-                        val ong = cadastro.getValue(Ong::class.java)
-                        if (ong?.nome != null) {
+                        val ong = cadastro.getValue(PessoaJuridica::class.java)
+                        if (ong?.nomeInstituicao != null) {
                             listaOngs.add(
                                 Ong(
                                     id = usuarioSnapshot.key?.hashCode() ?: 0,
-                                    nome = ong.nome,
+                                    nome = ong.nomeInstituicao,
                                     fotoUrl = ong.fotoUrl
                                 )
                             )

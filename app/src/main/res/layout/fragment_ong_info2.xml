@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:text="12.345.678/0001-90"
+            android:text=" "
             android:lines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:text="ongjoao@gmail.com"
+            android:text=" "
             android:lines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textUri"
-            android:text="ongjoao.com.br"
+            android:text=" "
             android:lines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,7 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
-            android:text="+55 (27) 99888-7766"
+            android:text=" "
             android:lines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,6 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
+            android:text=" "
             android:minLines="3"
             android:gravity="top" /> </com.google.android.material.textfield.TextInputLayout>
 

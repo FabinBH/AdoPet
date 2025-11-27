@@ -96,7 +96,7 @@ class LocateFragment : Fragment() {
             "createdAt" to "2025-10-14T${System.currentTimeMillis()}.838Z"
         )
 
-        database.child(uid).updateChildren(updateMap)
+        database.child("usuarios").child(uid).updateChildren(updateMap)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Localização registrada!", Toast.LENGTH_SHORT).show()
 
