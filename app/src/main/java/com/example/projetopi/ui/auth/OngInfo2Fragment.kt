@@ -1,5 +1,6 @@
 package com.example.projetopi.ui.auth
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +49,7 @@ class OngInfo2Fragment : Fragment() {
         initListeners()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setupViews() {
         val cnpjFromPart1 = ongDataPart1["cnpj"] as? String ?: "CNPJ não encontrado"
         binding.editTextCnpj.setText(cnpjFromPart1)

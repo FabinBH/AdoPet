@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="-8dp"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Voltar"
+        android:contentDescription="@string/voltar"
         android:padding="8dp"
         android:src="@drawable/arrowback" app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +26,7 @@
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Minhas Informações"
+        android:text="@string/minhas_informa_es"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -48,7 +48,7 @@
             android:id="@+id/profileImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:contentDescription="Foto da Instituição"
+            android:contentDescription="@string/foto_da_institui_o"
             android:src="@drawable/ic_person" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
             android:id="@+id/cameraIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:contentDescription="Editar Foto"
+            android:contentDescription="@string/editar_foto"
             android:src="@drawable/ic_add_circle" app:layout_constraintBottom_toBottomOf="@+id/profileImage"
             app:layout_constraintEnd_toEndOf="@+id/profileImage" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -69,7 +69,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:hint="Nome da Instituição"
+        android:hint="@string/nome_da_institui_o"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileImageContainer">
@@ -79,6 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapCharacters"
+            android:text=" "
             android:lines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +89,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="CNPJ"
+        android:hint="@string/cnpj"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputLayoutNome">
@@ -98,6 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
+            android:text=" "
             android:lines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,7 +109,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Aceita doações"
+        android:hint="@string/aceita_doa_es"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputLayoutCnpj">
@@ -117,7 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
-            android:text="Sim"
+            android:text="@string/sim"
             tools:ignore="LabelFor" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,7 +129,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Contato"
+        android:hint="@string/contato"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputLayoutDoacoes">
@@ -137,6 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
+            android:text=" "
             android:lines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -146,7 +149,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Patrocínios ou convênios?"
+        android:hint="@string/patroc_nios_ou_conv_nios"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputLayoutContato">
@@ -156,7 +159,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
-            android:text="Sim"
+            android:text="@string/sim"
             tools:ignore="LabelFor" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -166,7 +169,8 @@
         android:layout_height="60dp"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#FF9800" android:text="Avançar"
+        android:backgroundTint="#FF9800"
+        android:text="@string/avan_ar"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         android:textStyle="bold"

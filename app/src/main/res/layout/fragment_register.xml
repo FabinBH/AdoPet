@@ -12,30 +12,19 @@
         android:layout_height="wrap_content"
         android:padding="24dp">
 
-        <ImageButton
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="-8dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Voltar"
-            android:padding="8dp"
-            android:src="@drawable/arrowback"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cadastrar Animal"
+            android:layout_marginTop="20dp"
+            android:text="@string/cadastrar_animal"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/backButton"
+            android:fontFamily="@font/afacadbold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/backButton" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutEspecie"
@@ -43,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="Espécie"
+            android:hint="@string/esp_cie"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/titleText">
@@ -53,6 +42,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
+                android:textSize="20sp"
+                android:fontFamily="@font/afacadmedium"
+                android:text=" "
                 tools:ignore="LabelFor" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Raça"
+            android:hint="@string/ra_a"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputLayoutEspecie">
@@ -72,6 +64,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
+                android:textSize="20sp"
+                android:fontFamily="@font/afacadmedium"
+                android:text=" "
                 android:lines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +76,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Idade (em meses)"
+            android:hint="@string/idade_em_meses"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputLayoutRaca">
@@ -91,6 +86,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
+                android:textSize="20sp"
+                android:fontFamily="@font/afacadmedium"
+                android:text=" "
                 android:lines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,7 +98,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Nome"
+            android:hint="@string/nome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputLayoutIdade">
@@ -110,6 +108,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
+                android:textSize="20sp"
+                android:fontFamily="@font/afacadmedium"
+                android:text=" "
                 android:lines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,7 +120,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Descrição"
+            android:hint="@string/descri_o"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputLayoutNome">
@@ -130,6 +131,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:inputType="textMultiLine"
+                android:textSize="20sp"
+                android:fontFamily="@font/afacadmedium"
+                android:text=" "
                 android:minLines="3" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,7 +143,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Histórico Médico"
+            android:hint="@string/hist_rico_m_dico"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputLayoutDescricao">
@@ -150,6 +154,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="top"
                 android:inputType="textMultiLine"
+                android:textSize="20sp"
+                android:fontFamily="@font/afacadmedium"
+                android:text=" "
                 android:minLines="3" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -160,10 +167,11 @@
             android:layout_marginTop="48dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="#FF9800"
-            android:text="Avançar"
+            android:text="@string/avan_ar"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold"
+            android:fontFamily="@font/afacadbold"
             app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
