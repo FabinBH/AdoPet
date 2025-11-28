@@ -109,8 +109,8 @@
             android:id="@+id/action_adoptionFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
         <action
-            android:id="@+id/action_adoptionFragment_to_animalDetailsFragment"
-            app:destination="@id/animalDetailsFragment" />
+            android:id="@+id/action_adoptionFragment_to_adoptionConfirmationFragment"
+            app:destination="@id/adoptionConfirmationFragment" />
     </fragment>
     <fragment
         android:id="@+id/adoptionConfirmationFragment"
@@ -125,9 +125,6 @@
         <action
             android:id="@+id/action_ongFragment_to_chatFragment"
             app:destination="@id/chatFragment" />
-        <action
-            android:id="@+id/action_ongFragment_to_ongDetailsFragment"
-            app:destination="@id/ongDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/animalRegisterFragment"
@@ -167,31 +164,4 @@
         android:name="com.example.projetopi.ui.SocialFragment"
         android:label="fragment_social"
         tools:layout="@layout/fragment_social" />
-    <fragment
-        android:id="@+id/animalDetailsFragment"
-        android:name="com.example.projetopi.ui.AnimalDetailsFragment"
-        android:label="AnimalDetailsFragment"
-        tools:layout="@layout/fragment_animal_details">
-        <action
-            android:id="@+id/action_animalDetailsFragment_to_adoptionConfirmationFragment"
-            app:destination="@id/adoptionConfirmationFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/ongDetailsFragment"
-        android:name="com.example.projetopi.ui.OngDetailsFragment"
-        android:label="OngDetailsFragment"
-        tools:layout="@layout/fragment_ong_details">
-        <action
-            android:id="@+id/action_ongDetailsFragment_to_chatFragment"
-            app:destination="@id/chatFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/ongConfirmationFragment"
-        android:name="com.example.projetopi.ui.OngConfirmationFragment"
-        android:label="fragment_ong_confirmation"
-        tools:layout="@layout/fragment_ong_confirmation" >
-        <action
-            android:id="@+id/action_ongConfirmationFragment_to_ongFragment"
-            app:destination="@id/ongFragment" />
-    </fragment>
 </navigation>

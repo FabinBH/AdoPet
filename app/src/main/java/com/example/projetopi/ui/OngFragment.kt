@@ -46,12 +46,7 @@ class OngFragment : Fragment() {
 
         adapter = OngAdapter(requireContext()) { ong, action ->
             when (action) {
-                OngAdapter.SELECT_DETAILS -> {
-                    findNavController().navigate(R.id.ongDetailsFragment)
-                }
-                /*OngAdapter.SELECT_ADOPT -> {
-                    findNavController().navigate(R.id.adoptionConfirmationFragment)
-                }*/
+
             }
         }
 
@@ -84,14 +79,17 @@ class OngFragment : Fragment() {
                                 Ong(
                                     id = usuarioSnapshot.key?.hashCode() ?: 0,
                                     nome = ong.nomeInstituicao,
-                                    fotoUrl = ong.fotoUrl
+                                    fotoUrl = ong.fotoUrl,
+                                    cnpj = ong.cnpj,
+                                    email = ong.email,
+                                    telefone = ong.telefone
                                 )
                             )
                         }
-                        /*val id = usuarioSnapshot.key ?: ""
-                        val nome = cadastro.child("nome").getValue(String::class.java) ?: ""
-                        val fotoUrl = cadastro.child("fotoUrl").getValue(String::class.java) ?: ""
-                        lista.add(Ong(id, nome, fotoUrl))*/
+                        //val id = usuarioSnapshot.key ?: ""
+                        //val nome = cadastro.child("nome").getValue(String::class.java) ?: ""
+                        //val fotoUrl = cadastro.child("fotoUrl").getValue(String::class.java) ?: ""
+                        //lista.add(Ong(id, nome, fotoUrl))
                     }
                 }
 

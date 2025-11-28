@@ -23,8 +23,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.adoptionFragment,
                 R.id.ongFragment,
                 R.id.socialFragment,
-                R.id.ongDetailsFragment,
-                R.id.animalDetailsFragment,
+                //R.id.ongDetailsFragment,
+                //R.id.animalDetailsFragment,
                 R.id.profileFragment -> bottomNav.visibility = View.VISIBLE
                 else -> bottomNav.visibility = View.GONE
             }

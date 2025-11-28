@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projetopi.data.model.Ong
-import com.example.projetopi.databinding.ItemAdopetBinding
+import com.example.projetopi.databinding.ItemOngBinding
 
 class OngAdapter(
     private val context: Context,
@@ -17,9 +17,6 @@ class OngAdapter(
 ) : ListAdapter<Ong, OngAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
-        const val SELECT_DETAILS = 1
-        //const val SELECT_ADOPT = 2
-
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Ong>() {
             override fun areItemsTheSame(oldItem: Ong, newItem: Ong): Boolean {
                 return oldItem.id == newItem.id
@@ -32,7 +29,7 @@ class OngAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemAdopetBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = ItemOngBinding.inflate(LayoutInflater.from(context), parent, false)
         return MyViewHolder(binding)
     }
 
@@ -41,11 +38,14 @@ class OngAdapter(
         holder.bind(ong)
     }
 
-    inner class MyViewHolder(val binding: ItemAdopetBinding) :
+    inner class MyViewHolder(val binding: ItemOngBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(ong: Ong) {
             binding.txtOngName.text = ong.nome
+            binding.txtInfo1.text = ong.cnpj
+            binding.txtInfo2.text = ong.email
+            binding.txtInfo3.text = ong.telefone
 
             if (!ong.fotoUrl.isNullOrEmpty()) {
                 try {
@@ -59,8 +59,6 @@ class OngAdapter(
             } else {
                 binding.imgOng.setImageResource(android.R.drawable.ic_menu_report_image)
             }
-
-            binding.btnDetalhes.setOnClickListener { ongSelected(ong, SELECT_DETAILS) }
         }
     }
 }
