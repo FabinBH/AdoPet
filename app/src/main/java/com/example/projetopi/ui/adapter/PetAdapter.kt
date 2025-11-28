@@ -1,6 +1,9 @@
 package com.example.projetopi.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -11,23 +14,18 @@ import com.example.projetopi.databinding.ItemAdopetBinding
 
 class PetAdapter (
     private val context: Context,
-    private val taskSelected: (Pet, Int) -> Unit
+    private val petSelected: (Pet, Int) -> Unit
 ): ListAdapter<Pet, PetAdapter.MyViewHolder>(DIFF_CALBACK) {
 
     companion object {
-        val SELECT_DETAILS = 1
-        val SELECT_ADOPT = 2
+        val SELECT_ADOPT = 1
         private val DIFF_CALBACK = object : DiffUtil.ItemCallback<Pet>() {
-            override fun areItemsTheSame(
-                oldItem: Pet, newItem: Pet
-            ): Boolean {
-                return oldItem.nome == newItem.nome && oldItem.disponivel == newItem.disponivel
+            override fun areItemsTheSame(oldItem: Pet, newItem: Pet): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(
-                oldItem: Pet, newItem: Pet
-            ): Boolean {
-                return oldItem == newItem && oldItem.disponivel == newItem.disponivel
+            override fun areContentsTheSame(oldItem: Pet, newItem: Pet): Boolean {
+                return oldItem == newItem
             }
         }
     }
@@ -39,25 +37,35 @@ class PetAdapter (
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val pet = getItem(position)
-        //holder.binding.textDescription.text = pet.description
-
-        //setIndicators(pet, holder)
+        holder.bind(pet)
     }
 
-    /*private fun setIndicators(pet: Pet, holder: MyViewHolder){
-        when(pet.adopted){
-            Status.NOT_ADOPTED -> {
-                holder.binding.btnDetalhes.isVisible = false
-                holder.binding.btnDetalhes.setOnClickListener { taskSelected(task, SELECT_NEXT) }
+    inner class MyViewHolder(val binding: ItemAdopetBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
+        fun bind(pet: Pet) {
+            binding.txtNome.text = "Nome: ${pet.nome}"
+            binding.txtInfo1.text = "Espécie: ${pet.especie}"
+            binding.txtInfo2.text = "Raça: ${pet.raca}"
+            binding.txtInfo3.text = "Idade: ${pet.idade} meses"
+            binding.txtInfo4.text = "Breve descrição do animal: ${pet.descricao}"
+
+            if (!pet.fotoUrl.isNullOrEmpty()) {
+                try {
+                    val imageBytes = Base64.decode(pet.fotoUrl, Base64.DEFAULT)
+                    val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                    binding.imgPet.setImageBitmap(decodedImage)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    binding.imgPet.setImageResource(android.R.drawable.ic_menu_report_image)
+                }
+            } else {
+                binding.imgPet.setImageResource(android.R.drawable.ic_menu_report_image)
             }
 
+            binding.root.setOnClickListener {
+                petSelected(pet, SELECT_ADOPT)
+            }
         }
-        holder.binding.buttonDelete.setOnClickListener { taskSelected(task, SELECT_REMOVER)}
-        holder.binding.buttonEditar.setOnClickListener { taskSelected(task, SELECT_EDIT) }
-        holder.binding.buttonDetails.setOnClickListener { taskSelected(task, SELECT_DETAILS) }
-    }*/
-
-    inner class MyViewHolder(val binding: ItemAdopetBinding): RecyclerView.ViewHolder(binding.root) {
-
     }
 }

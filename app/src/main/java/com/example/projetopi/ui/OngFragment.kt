@@ -88,10 +88,6 @@ class OngFragment : Fragment() {
                                 )
                             )
                         }
-                        //val id = usuarioSnapshot.key ?: ""
-                        //val nome = cadastro.child("nome").getValue(String::class.java) ?: ""
-                        //val fotoUrl = cadastro.child("fotoUrl").getValue(String::class.java) ?: ""
-                        //lista.add(Ong(id, nome, fotoUrl))
                     }
                 }
 
@@ -99,7 +95,7 @@ class OngFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), "Erro ao carregar usuários", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Erro ao carregar ONGs", Toast.LENGTH_SHORT).show()
             }
         })
     }

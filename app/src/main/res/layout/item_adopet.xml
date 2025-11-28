@@ -18,7 +18,7 @@
             android:padding="12dp">
 
             <ImageView
-                android:id="@+id/imgOng"
+                android:id="@+id/imgPet"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:scaleType="centerCrop"
@@ -58,6 +58,17 @@
 
             <TextView
                 android:id="@+id/txtInfo3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Informação"
+                android:fontFamily="@font/afacadbold"
+                android:textStyle="bold"
+                android:textColor="@color/orange"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtInfo4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
