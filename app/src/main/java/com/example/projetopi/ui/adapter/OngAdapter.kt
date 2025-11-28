@@ -17,6 +17,8 @@ class OngAdapter(
 ) : ListAdapter<Ong, OngAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
     companion object {
+        const val SELECT_ONG = 1
+
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Ong>() {
             override fun areItemsTheSame(oldItem: Ong, newItem: Ong): Boolean {
                 return oldItem.id == newItem.id
@@ -58,6 +60,10 @@ class OngAdapter(
                 }
             } else {
                 binding.imgOng.setImageResource(android.R.drawable.ic_menu_report_image)
+            }
+
+            binding.root.setOnClickListener {
+                ongSelected(ong, SELECT_ONG)
             }
         }
     }

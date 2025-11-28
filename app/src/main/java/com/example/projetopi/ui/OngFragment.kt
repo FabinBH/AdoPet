@@ -46,7 +46,9 @@ class OngFragment : Fragment() {
 
         adapter = OngAdapter(requireContext()) { ong, action ->
             when (action) {
-
+                OngAdapter.SELECT_ONG-> {
+                    Toast.makeText(requireContext(), "ONG selecionada", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 

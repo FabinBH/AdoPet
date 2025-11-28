@@ -45,6 +45,7 @@ class ChatAdapter(
 
         fun bind(chat: Chat) {
             binding.profileName.text = chat.nome
+            binding.lastMessage.text = chat.email
 
             if (!chat.fotoBase64.isNullOrEmpty()) {
                 try {

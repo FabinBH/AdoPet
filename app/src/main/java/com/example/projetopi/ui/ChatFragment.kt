@@ -1,8 +1,6 @@
 package com.example.projetopi.ui
 
 import android.os.Bundle
-import android.util.Base64
-import android.graphics.BitmapFactory
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -77,7 +75,8 @@ class ChatFragment : Fragment() {
                                 Chat(
                                     id = userSnap.key?.hashCode() ?: 0,
                                     nome = pessoa.nome,
-                                    fotoBase64 = pessoa.fotoUrl
+                                    fotoBase64 = pessoa.fotoUrl,
+                                    email = pessoa.email
                                 )
                             )
                         }
