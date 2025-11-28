@@ -76,11 +76,11 @@ class OngFragment : Fragment() {
 
                     if (cadastro.exists()) {
                         val ong = cadastro.getValue(PessoaJuridica::class.java)
-                        if (ong?.nomeInstituicao != null) {
+                        if (ong?.instituicao != null) {
                             listaOngs.add(
                                 Ong(
-                                    id = usuarioSnapshot.key?.hashCode() ?: 0,
-                                    nome = ong.nomeInstituicao,
+                                    id = usuarioSnapshot.key ?: "",
+                                    nome = ong.instituicao,
                                     fotoUrl = ong.fotoUrl,
                                     cnpj = ong.cnpj,
                                     email = ong.email,

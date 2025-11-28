@@ -1,7 +1,7 @@
 package com.example.projetopi.data.model
 
 data class Ong (
-    val id: Int,
+    val id: String,
     val nome: String,
     val fotoUrl: String? = null,
     val cnpj: String?,
