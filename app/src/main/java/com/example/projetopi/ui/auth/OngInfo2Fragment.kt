@@ -51,10 +51,6 @@ class OngInfo2Fragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setupViews() {
-        val cnpjFromPart1 = ongDataPart1["cnpj"] as? String ?: "CNPJ não encontrado"
-        binding.editTextCnpj.setText(cnpjFromPart1)
-        binding.editTextCnpj.isEnabled = false
-
         binding.titleText.text = "Informações de Contato e Necessidades"
     }
 

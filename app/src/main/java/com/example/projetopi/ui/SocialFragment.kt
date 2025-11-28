@@ -6,16 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.fragment.findNavController
 import com.example.projetopi.R
+import com.example.projetopi.databinding.FragmentSocialBinding
 
 class SocialFragment : Fragment() {
+
+    private var _binding: FragmentSocialBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_social, container, false)
+        _binding = FragmentSocialBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,9 +42,13 @@ class SocialFragment : Fragment() {
         bookmarkButton?.setOnClickListener {
             it.isSelected = !it.isSelected
         }
+
+        initListeners()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private fun initListeners() {
+        binding.btnChat.setOnClickListener {
+            findNavController().navigate(R.id.chatFragment)
+        }
     }
 }

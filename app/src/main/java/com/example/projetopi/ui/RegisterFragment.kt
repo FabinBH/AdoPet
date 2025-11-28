@@ -62,10 +62,6 @@ class RegisterFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initListeners() {
-        binding.backButton.setOnClickListener {
-            findNavController().popBackStack()
-        }
-
         binding.advanceButton.setOnClickListener {
             val dadosAnimal = collectAnimalData()
 
@@ -79,7 +75,6 @@ class RegisterFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun collectAnimalData(): Map<String, Any>? {
-        // Coleta os dados
         val especie = binding.autoCompleteEspecie.text.toString().trim()
         val raca = binding.editTextRaca.text.toString().trim()
         val idadeStr = binding.editTextIdade.text.toString().trim()
@@ -87,7 +82,6 @@ class RegisterFragment : Fragment() {
         val descricao = binding.editTextDescricao.text.toString().trim()
         val historico = binding.editTextHistorico.text.toString().trim()
 
-        // Validação básica
         if (especie.isEmpty() || raca.isEmpty() || idadeStr.isEmpty() || nome.isEmpty()) {
             return null
         }
