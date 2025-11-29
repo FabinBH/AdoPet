@@ -24,6 +24,15 @@ class LocateFragment : Fragment() {
     private var userUid: String? = null
     private var userEmail: String? = null
 
+    private val dadosLocalizacao = mapOf(
+        "Espírito Santo" to listOf("Vitória", "Vila Velha", "Serra", "Cariacica", "Guarapari"),
+        "São Paulo" to listOf("São Paulo", "Campinas", "Santos", "Ribeirão Preto", "Guarulhos"),
+        "Rio de Janeiro" to listOf("Rio de Janeiro", "Niterói", "Duque de Caxias", "Petrópolis"),
+        "Minas Gerais" to listOf("Belo Horizonte", "Contagem", "Uberlândia", "Juiz de Fora")
+    )
+    private val estados = dadosLocalizacao.keys.toTypedArray()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,10 +58,22 @@ class LocateFragment : Fragment() {
     }
 
     private fun setupDropdowns() {
-        val estados = arrayOf("Espírito Santo", "São Paulo", "Rio de Janeiro", "Minas Gerais")
         val estadoAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, estados)
-
         binding.stateAutoCompleteTextView.setAdapter(estadoAdapter)
+
+        binding.stateAutoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
+            val estadoSelecionado = parent.getItemAtPosition(position).toString()
+
+            val cidades = dadosLocalizacao[estadoSelecionado]?.toTypedArray() ?: emptyArray()
+
+            val cidadeAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, cidades)
+            binding.cityAutoCompleteTextView.setAdapter(cidadeAdapter)
+
+            binding.cityAutoCompleteTextView.setText("", false)
+            binding.cityAutoCompleteTextView.requestFocus()
+        }
+
+        binding.cityAutoCompleteTextView.setAdapter(ArrayAdapter(requireContext(), R.layout.dropdown_item, emptyArray<String>()))
     }
 
     private fun initListeners() {
@@ -61,13 +82,22 @@ class LocateFragment : Fragment() {
         }
 
         binding.registerButton.setOnClickListener {
-            val dadosLocalizacao = collectLocationData()
+            val cep = binding.cepEditText.text.toString().trim()
+            val estado = binding.stateAutoCompleteTextView.text.toString().trim()
+            val cidade = binding.cityAutoCompleteTextView.text.toString().trim()
 
-            if (dadosLocalizacao != null) {
-                salvarDadosLocalizacao(dadosLocalizacao)
-            } else {
+            if (cep.length != 8 || estado.isEmpty() || cidade.isEmpty()) {
                 Toast.makeText(requireContext(), "Preencha todos os campos da localização.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            val dadosLocalizacao = mapOf<String, Any>(
+                "cep" to cep,
+                "estado" to estado,
+                "cidade" to cidade,
+                "updatedAt" to TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())
+            )
+            salvarDadosLocalizacao(dadosLocalizacao)
         }
     }
 
@@ -76,7 +106,7 @@ class LocateFragment : Fragment() {
         val estado = binding.stateAutoCompleteTextView.text.toString().trim()
         val cidade = binding.cityAutoCompleteTextView.text.toString().trim()
 
-        if (cep.isEmpty() || estado.isEmpty() || cidade.isEmpty()) return null
+        if (cep.length != 8 || estado.isEmpty() || cidade.isEmpty()) return null
 
         return mapOf(
             "cep" to cep,
@@ -89,11 +119,10 @@ class LocateFragment : Fragment() {
     private fun salvarDadosLocalizacao(dados: Map<String, Any>) {
         val uid = userUid!!
 
-        val updateMap = mapOf(
+        val updateMap = mutableMapOf<String, Any>(
             "localizacao" to dados,
-
             "email" to userEmail.toString(),
-            "createdAt" to "2025-10-14T${System.currentTimeMillis()}.838Z"
+            "createdAt" to System.currentTimeMillis()
         )
 
         database.child("usuarios").child(uid).updateChildren(updateMap)
