@@ -54,6 +54,7 @@ class LocateFragment : Fragment() {
         }
 
         setupDropdowns()
+        binding.cepEditText.addTextChangedListener(CepMask(binding.cepEditText))
         initListeners()
     }
 
@@ -86,7 +87,7 @@ class LocateFragment : Fragment() {
             val estado = binding.stateAutoCompleteTextView.text.toString().trim()
             val cidade = binding.cityAutoCompleteTextView.text.toString().trim()
 
-            if (cep.length != 8 || estado.isEmpty() || cidade.isEmpty()) {
+            if (cep.length != 9 || estado.isEmpty() || cidade.isEmpty()) {
                 Toast.makeText(requireContext(), "Preencha todos os campos da localização.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -101,7 +102,7 @@ class LocateFragment : Fragment() {
         }
     }
 
-    private fun collectLocationData(): Map<String, Any>? {
+    /*private fun collectLocationData(): Map<String, Any>? {
         val cep = binding.cepEditText.text.toString().trim()
         val estado = binding.stateAutoCompleteTextView.text.toString().trim()
         val cidade = binding.cityAutoCompleteTextView.text.toString().trim()
@@ -114,7 +115,7 @@ class LocateFragment : Fragment() {
             "cidade" to cidade,
             "updatedAt" to TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())
         )
-    }
+    }*/
 
     private fun salvarDadosLocalizacao(dados: Map<String, Any>) {
         val uid = userUid!!
@@ -140,5 +141,31 @@ class LocateFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    inner class CepMask(private val editText: android.widget.EditText) : android.text.TextWatcher {
+
+        private var isUpdating = false
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            if (isUpdating) return
+
+            val digits = s.toString().replace("[^0-9]".toRegex(), "")
+            val limited = digits.take(8)
+
+            val formatted = when {
+                limited.length <= 5 -> limited       // 0…00000
+                else -> limited.substring(0, 5) + "-" + limited.substring(5)
+            }
+
+            isUpdating = true
+            editText.setText(formatted)
+            editText.setSelection(formatted.length)
+            isUpdating = false
+        }
+
+        override fun afterTextChanged(s: android.text.Editable?) {}
     }
 }
