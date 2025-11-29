@@ -1,8 +1,13 @@
 package com.example.projetopi.ui.auth
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +29,24 @@ class PersonInfoFragment : Fragment() {
 
     private val database = Firebase.database.reference
     private var userUid: String? = null
+
+    private var encodedImage: String? = null
+
+    private val imagePicker =
+        registerForActivityResult(androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                val uri = data?.data
+
+                if (uri != null) {
+                    val inputStream = requireContext().contentResolver.openInputStream(uri)
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
+
+                    binding.profileImage.setImageBitmap(bitmap)
+                    encodedImage = bitmapToBase64(bitmap)
+                }
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,7 +90,9 @@ class PersonInfoFragment : Fragment() {
         }
 
         binding.profileImageContainer.setOnClickListener {
-            Toast.makeText(requireContext(), "Abrir galeria ou câmera para foto de perfil.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            imagePicker.launch(intent)
         }
 
         binding.registerButton.setOnClickListener {
@@ -79,6 +104,13 @@ class PersonInfoFragment : Fragment() {
                 Toast.makeText(requireContext(), "Preencha todos os campos obrigatórios.", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun bitmapToBase64(bitmap: Bitmap): String {
+        val outputStream = java.io.ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream)
+        val bytes = outputStream.toByteArray()
+        return Base64.encodeToString(bytes, Base64.DEFAULT)
     }
 
     private fun collectPersonalData(): Map<String, Any>? {
@@ -97,7 +129,7 @@ class PersonInfoFragment : Fragment() {
 
         return mapOf(
             "cpf" to cpf,
-            "fotoUrl" to "",
+            "fotoUrl" to (encodedImage ?: ""),
             "nascimento" to dataNasc,
             "nome" to nome,
             "sexo" to sexo,

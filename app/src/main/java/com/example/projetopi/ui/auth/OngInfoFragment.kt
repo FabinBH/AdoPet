@@ -1,8 +1,13 @@
 package com.example.projetopi.ui.auth
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +25,23 @@ class OngInfoFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var userUid: String? = null
+
+    private var encodedImage: String? = null
+    private val imagePicker =
+        registerForActivityResult(androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                val uri = data?.data
+
+                if (uri != null) {
+                    val inputStream = requireContext().contentResolver.openInputStream(uri)
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
+
+                    binding.profileImage.setImageBitmap(bitmap)
+                    encodedImage = bitmapToBase64(bitmap)
+                }
+            }
+        }
 
     companion object {
         const val ONG_DATA_BUNDLE = "ong_data_bundle"
@@ -69,7 +91,6 @@ class OngInfoFragment : Fragment() {
         binding.editTextContato.addTextChangedListener(maskTelefone(binding.editTextContato))
     }
 
-    /* -------------------- MÁSCARA DE CNPJ ---------------------- */
     private fun maskCNPJ(edit: android.widget.EditText) = object : TextWatcher {
 
         private var isUpdating = false
@@ -99,7 +120,6 @@ class OngInfoFragment : Fragment() {
         override fun afterTextChanged(s: Editable?) {}
     }
 
-    /* -------------------- MÁSCARA DE TELEFONE ---------------------- */
     private fun maskTelefone(edit: android.widget.EditText) = object : TextWatcher {
 
         private var isUpdating = false
@@ -132,15 +152,15 @@ class OngInfoFragment : Fragment() {
         override fun afterTextChanged(s: Editable?) {}
     }
 
-    /* -------------------------------------------------------------------- */
-
     private fun initListeners() {
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
 
         binding.profileImageContainer.setOnClickListener {
-            Toast.makeText(requireContext(), "Abrir galeria ou câmera para o logo da ONG.", Toast.LENGTH_SHORT).show()
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            imagePicker.launch(intent)
         }
 
         binding.advanceButton.setOnClickListener {
@@ -154,6 +174,13 @@ class OngInfoFragment : Fragment() {
         }
     }
 
+    private fun bitmapToBase64(bitmap: Bitmap): String {
+        val outputStream = java.io.ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream)
+        val bytes = outputStream.toByteArray()
+        return Base64.encodeToString(bytes, Base64.DEFAULT)
+    }
+
     private fun collectOngDataPart1(): Map<String, Any>? {
         val nome = binding.editTextNome.text.toString().trim()
         val cnpj = binding.editTextCnpj.text.toString().trim()
@@ -161,7 +188,7 @@ class OngInfoFragment : Fragment() {
         val contato = binding.editTextContato.text.toString().trim()
         val patrocinio = binding.autoCompletePatrocinios.text.toString().trim()
 
-        val fotoUrl = ""
+        val fotoUrl = encodedImage ?: ""
 
         if (nome.isEmpty() || cnpj.isEmpty() || cnpj.length != 18 ||
             doacoes.isEmpty() || contato.isEmpty() || contato.length < 14 ||

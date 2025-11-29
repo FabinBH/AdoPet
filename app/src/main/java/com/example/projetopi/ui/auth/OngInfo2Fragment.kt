@@ -143,9 +143,6 @@ class OngInfo2Fragment : Fragment() {
         return map
     }
 
-    // ---------------------------
-    // MÁSCARA DE TELEFONE
-    // ---------------------------
     inner class TelefoneMask(private val editText: android.widget.EditText) : TextWatcher {
 
         private var isUpdating = false
@@ -156,7 +153,7 @@ class OngInfo2Fragment : Fragment() {
             if (isUpdating) return
 
             val digits = s.toString().replace("[^0-9]".toRegex(), "")
-            val limited = digits.take(11) // XX XXXXX XXXX
+            val limited = digits.take(11)
 
             val formatted = when {
                 limited.length <= 2 ->
