@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.projetopi.R
 import com.example.projetopi.databinding.FragmentAnimalRegisterBinding
 
 class AnimalRegisterFragment : Fragment() {
@@ -31,6 +33,11 @@ class AnimalRegisterFragment : Fragment() {
     }
 
     private fun initListeners() {
-
+        binding.btnAdoption2.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.btnHome.setOnClickListener {
+            findNavController().navigate(R.id.action_animalRegisterFragment_to_socialFragment)
+        }
     }
 }

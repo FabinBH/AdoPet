@@ -130,7 +130,11 @@
         android:id="@+id/animalRegisterFragment"
         android:name="com.example.projetopi.ui.AnimalRegisterFragment"
         android:label="AnimalRegisterFragment"
-        tools:layout="@layout/fragment_animal_register"/>
+        tools:layout="@layout/fragment_animal_register">
+        <action
+            android:id="@+id/action_animalRegisterFragment_to_socialFragment"
+            app:destination="@id/socialFragment" />
+    </fragment>
     <fragment
         android:id="@+id/filterFragment"
         android:name="com.example.projetopi.ui.util.FilterFragment"

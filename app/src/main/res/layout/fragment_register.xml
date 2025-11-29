@@ -5,12 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".ui.RegisterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="24dp">
+        android:paddingBottom="24dp"
+        android:paddingTop="24dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
 
         <TextView
             android:id="@+id/titleText"
@@ -44,7 +48,6 @@
                 android:inputType="none"
                 android:textSize="20sp"
                 android:fontFamily="@font/afacadmedium"
-                android:text=" "
                 tools:ignore="LabelFor" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,7 +69,6 @@
                 android:inputType="textCapWords"
                 android:textSize="20sp"
                 android:fontFamily="@font/afacadmedium"
-                android:text=" "
                 android:lines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,7 +90,6 @@
                 android:inputType="number"
                 android:textSize="20sp"
                 android:fontFamily="@font/afacadmedium"
-                android:text=" "
                 android:lines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,7 +111,6 @@
                 android:inputType="textCapWords"
                 android:textSize="20sp"
                 android:fontFamily="@font/afacadmedium"
-                android:text=" "
                 android:lines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -133,7 +133,6 @@
                 android:inputType="textMultiLine"
                 android:textSize="20sp"
                 android:fontFamily="@font/afacadmedium"
-                android:text=" "
                 android:minLines="3" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,7 +155,6 @@
                 android:inputType="textMultiLine"
                 android:textSize="20sp"
                 android:fontFamily="@font/afacadmedium"
-                android:text=" "
                 android:minLines="3" />
         </com.google.android.material.textfield.TextInputLayout>
 
