@@ -102,21 +102,6 @@ class LocateFragment : Fragment() {
         }
     }
 
-    /*private fun collectLocationData(): Map<String, Any>? {
-        val cep = binding.cepEditText.text.toString().trim()
-        val estado = binding.stateAutoCompleteTextView.text.toString().trim()
-        val cidade = binding.cityAutoCompleteTextView.text.toString().trim()
-
-        if (cep.length != 8 || estado.isEmpty() || cidade.isEmpty()) return null
-
-        return mapOf(
-            "cep" to cep,
-            "estado" to estado,
-            "cidade" to cidade,
-            "updatedAt" to TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())
-        )
-    }*/
-
     private fun salvarDadosLocalizacao(dados: Map<String, Any>) {
         val uid = userUid!!
 
@@ -156,7 +141,7 @@ class LocateFragment : Fragment() {
             val limited = digits.take(8)
 
             val formatted = when {
-                limited.length <= 5 -> limited       // 0…00000
+                limited.length <= 5 -> limited
                 else -> limited.substring(0, 5) + "-" + limited.substring(5)
             }
 

@@ -1,6 +1,8 @@
 package com.example.projetopi.ui.auth
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,18 +45,94 @@ class OngInfoFragment : Fragment() {
         }
 
         setupDropdowns()
+        setupMasks()
         initListeners()
     }
 
     private fun setupDropdowns() {
         val opcoesSimNao = arrayOf("Sim", "Não")
 
-        val doacoesAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, opcoesSimNao)
-        val patrociniosAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, opcoesSimNao)
+        binding.autoCompleteDoacoes.setAdapter(
+            ArrayAdapter(requireContext(), R.layout.dropdown_item, opcoesSimNao)
+        )
 
-        binding.autoCompleteDoacoes.setAdapter(doacoesAdapter)
-        binding.autoCompletePatrocinios.setAdapter(patrociniosAdapter)
+        binding.autoCompletePatrocinios.setAdapter(
+            ArrayAdapter(requireContext(), R.layout.dropdown_item, opcoesSimNao)
+        )
     }
+
+    private fun setupMasks() {
+        // Máscara CNPJ
+        binding.editTextCnpj.addTextChangedListener(maskCNPJ(binding.editTextCnpj))
+
+        // Máscara Telefone
+        binding.editTextContato.addTextChangedListener(maskTelefone(binding.editTextContato))
+    }
+
+    /* -------------------- MÁSCARA DE CNPJ ---------------------- */
+    private fun maskCNPJ(edit: android.widget.EditText) = object : TextWatcher {
+
+        private var isUpdating = false
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            if (isUpdating) return
+
+            val digits = s.toString().replace("[^0-9]".toRegex(), "")
+            val limited = digits.take(14)
+
+            val formatted = when {
+                limited.length <= 2 -> limited
+                limited.length <= 5 -> "${limited.substring(0, 2)}.${limited.substring(2)}"
+                limited.length <= 8 -> "${limited.substring(0, 2)}.${limited.substring(2, 5)}.${limited.substring(5)}"
+                limited.length <= 12 -> "${limited.substring(0, 2)}.${limited.substring(2, 5)}.${limited.substring(5, 8)}/${limited.substring(8)}"
+                else -> "${limited.substring(0, 2)}.${limited.substring(2, 5)}.${limited.substring(5, 8)}/${limited.substring(8, 12)}-${limited.substring(12)}"
+            }
+
+            isUpdating = true
+            edit.setText(formatted)
+            edit.setSelection(formatted.length)
+            isUpdating = false
+        }
+
+        override fun afterTextChanged(s: Editable?) {}
+    }
+
+    /* -------------------- MÁSCARA DE TELEFONE ---------------------- */
+    private fun maskTelefone(edit: android.widget.EditText) = object : TextWatcher {
+
+        private var isUpdating = false
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            if (isUpdating) return
+
+            val digits = s.toString().replace("[^0-9]".toRegex(), "")
+            val limited = digits.take(11)
+
+            val formatted = when {
+                limited.length <= 2 ->
+                    "(${limited}"
+                limited.length <= 7 ->
+                    "(${limited.substring(0, 2)}) ${limited.substring(2)}"
+                limited.length <= 11 ->
+                    "(${limited.substring(0, 2)}) ${limited.substring(2, 7)}-${limited.substring(7)}"
+                else -> ""
+            }
+
+            isUpdating = true
+            edit.setText(formatted)
+            edit.setSelection(formatted.length)
+            isUpdating = false
+        }
+
+        override fun afterTextChanged(s: Editable?) {}
+    }
+
+    /* -------------------------------------------------------------------- */
 
     private fun initListeners() {
         binding.backButton.setOnClickListener {
@@ -85,7 +163,10 @@ class OngInfoFragment : Fragment() {
 
         val fotoUrl = ""
 
-        if (nome.isEmpty() || cnpj.isEmpty() || doacoes.isEmpty() || contato.isEmpty() || patrocinio.isEmpty()) {
+        if (nome.isEmpty() || cnpj.isEmpty() || cnpj.length != 18 ||
+            doacoes.isEmpty() || contato.isEmpty() || contato.length < 14 ||
+            patrocinio.isEmpty()
+        ) {
             return null
         }
 
