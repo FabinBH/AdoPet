@@ -1,13 +1,19 @@
 package com.example.projetopi.ui
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.projetopi.R
@@ -30,6 +36,24 @@ class RegisterFragment : Fragment() {
     private val animalsRef = database.child("animal_Cadastrado")
 
     private var currentOwnerUid: String? = null
+
+    private var encodedImage: String? = null
+
+    private val imagePicker =
+        registerForActivityResult(androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                val uri = data?.data
+
+                if (uri != null) {
+                    val inputStream = requireContext().contentResolver.openInputStream(uri)
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
+
+                    binding.imageViewIcon.setImageBitmap(bitmap)
+                    encodedImage = bitmapToBase64(bitmap)
+                }
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,6 +95,19 @@ class RegisterFragment : Fragment() {
                 Toast.makeText(requireContext(), "Preencha a espécie, raça, idade e nome para continuar.", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.imageContainer.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            imagePicker.launch(intent)
+        }
+    }
+
+    private fun bitmapToBase64(bitmap: Bitmap): String {
+        val outputStream = java.io.ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream)
+        val bytes = outputStream.toByteArray()
+        return Base64.encodeToString(bytes, Base64.DEFAULT)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -97,6 +134,7 @@ class RegisterFragment : Fragment() {
             "especie" to especie,
             "raca" to raca,
             "idade" to idadeStr,
+            "fotoUrl" to (encodedImage ?: ""),
             "descricao" to descricao,
             "historico" to historico,
             "fotoUrl" to fotoUrl,

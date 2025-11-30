@@ -30,6 +30,50 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageContainer"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:contentPadding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleText">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/imageViewIcon"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/baseline_add_circle_24"
+                    app:tint="#FF9800"
+                    android:contentDescription="@string/adicionar_foto_do_animal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewUpload"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/clique_para_adicionar_a_foto_do_animal"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/black"
+                    android:fontFamily="@font/afacadregular"
+                    app:layout_constraintStart_toEndOf="@id/imageViewIcon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutEspecie"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
@@ -39,7 +83,7 @@
             android:hint="@string/esp_cie"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titleText">
+            app:layout_constraintTop_toBottomOf="@id/imageContainer"> <!-- Mudado para abaixo do imageContainer -->
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteEspecie"
@@ -133,7 +177,7 @@
                 android:inputType="textMultiLine"
                 android:textSize="20sp"
                 android:fontFamily="@font/afacadmedium"
-                android:minLines="3" />
+                android:minLines="2" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -155,7 +199,7 @@
                 android:inputType="textMultiLine"
                 android:textSize="20sp"
                 android:fontFamily="@font/afacadmedium"
-                android:minLines="3" />
+                android:minLines="2" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

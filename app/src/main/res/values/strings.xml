@@ -113,4 +113,6 @@
     <string name="nome_da_pessoa">Nome da pessoa</string>
     <string name="lorem_ipsum_dolor_sit_amet">Lorem ipsum dolor sit amet</string>
     <string name="respons_vel">Responsável</string>
+    <string name="adicionar_foto_do_animal">Adicionar foto do animal</string>
+    <string name="clique_para_adicionar_a_foto_do_animal">Clique para adicionar a foto do animal</string>
 </resources>
