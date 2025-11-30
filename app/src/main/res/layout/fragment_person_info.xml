@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:text="@string/minhas_informa_es"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textSize="24sp"
+        android:fontFamily="@font/afacadbold"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,6 +82,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName|textCapWords"
+            android:fontFamily="@font/afacadmedium"
+            android:textSize="20sp"
             android:lines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,6 +103,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
+            android:fontFamily="@font/afacadmedium"
+            android:textSize="20sp"
             android:lines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -119,6 +124,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date"
+            android:fontFamily="@font/afacadmedium"
+            android:textSize="20sp"
             android:lines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,6 +146,8 @@
             android:layout_height="wrap_content"
             android:inputType="none"
             android:text="@string/feminino"
+            android:fontFamily="@font/afacadmedium"
+            android:textSize="20sp"
             tools:ignore="LabelFor" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -158,6 +167,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
+            android:fontFamily="@font/afacadmedium"
+            android:textSize="20sp"
             android:lines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -170,7 +181,8 @@
         android:backgroundTint="#FF9800"
         android:text="@string/realizar_cadastro"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:fontFamily="@font/afacadbold"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

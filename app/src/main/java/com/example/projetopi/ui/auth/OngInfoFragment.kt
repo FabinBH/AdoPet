@@ -198,11 +198,11 @@ class OngInfoFragment : Fragment() {
         }
 
         return mapOf(
-            "nome" to nome,
+            "instituicao" to nome,
             "cnpj" to cnpj,
             "aceitaDoacoes" to (doacoes == "Sim"),
-            "contato" to contato,
-            "patrociniosConvenios" to (patrocinio == "Sim"),
+            "telefone" to contato,
+            "patrocinios" to (patrocinio == "Sim"),
             "fotoUrl" to fotoUrl,
             "updatedAt" to TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())
         )
