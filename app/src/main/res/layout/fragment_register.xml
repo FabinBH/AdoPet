@@ -51,7 +51,6 @@
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:src="@drawable/baseline_add_circle_24"
-                    app:tint="#FF9800"
                     android:contentDescription="@string/adicionar_foto_do_animal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

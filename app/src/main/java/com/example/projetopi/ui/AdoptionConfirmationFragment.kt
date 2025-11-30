@@ -35,7 +35,6 @@ class AdoptionConfirmationFragment : Fragment() {
     private fun initListeners() {
         binding.btnAdoption.setOnClickListener {
             findNavController().popBackStack()
-            findNavController().popBackStack()
         }
     }
 }

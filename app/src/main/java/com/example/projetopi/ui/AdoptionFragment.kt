@@ -50,7 +50,7 @@ class AdoptionFragment : Fragment() {
         adapter = PetAdapter(requireContext()) { pet, action ->
             when (action) {
                 PetAdapter.SELECT_ADOPT -> {
-                    Toast.makeText(requireContext(), "Adotar animal", Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_adoptionFragment_to_adoptionConfirmationFragment)
                 }
             }
         }
