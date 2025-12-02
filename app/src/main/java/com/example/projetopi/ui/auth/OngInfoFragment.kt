@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.projetopi.R
 import com.example.projetopi.databinding.FragmentOngInfoBinding
+import com.example.projetopi.ui.util.PhoneMask
 import java.util.concurrent.TimeUnit
 
 class OngInfoFragment : Fragment() {
@@ -84,11 +85,8 @@ class OngInfoFragment : Fragment() {
     }
 
     private fun setupMasks() {
-        // Máscara CNPJ
         binding.editTextCnpj.addTextChangedListener(maskCNPJ(binding.editTextCnpj))
-
-        // Máscara Telefone
-        binding.editTextContato.addTextChangedListener(maskTelefone(binding.editTextContato))
+        binding.editTextContato.addTextChangedListener(PhoneMask(binding.editTextContato))
     }
 
     private fun maskCNPJ(edit: android.widget.EditText) = object : TextWatcher {
@@ -109,38 +107,6 @@ class OngInfoFragment : Fragment() {
                 limited.length <= 8 -> "${limited.substring(0, 2)}.${limited.substring(2, 5)}.${limited.substring(5)}"
                 limited.length <= 12 -> "${limited.substring(0, 2)}.${limited.substring(2, 5)}.${limited.substring(5, 8)}/${limited.substring(8)}"
                 else -> "${limited.substring(0, 2)}.${limited.substring(2, 5)}.${limited.substring(5, 8)}/${limited.substring(8, 12)}-${limited.substring(12)}"
-            }
-
-            isUpdating = true
-            edit.setText(formatted)
-            edit.setSelection(formatted.length)
-            isUpdating = false
-        }
-
-        override fun afterTextChanged(s: Editable?) {}
-    }
-
-    private fun maskTelefone(edit: android.widget.EditText) = object : TextWatcher {
-
-        private var isUpdating = false
-
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-
-            if (isUpdating) return
-
-            val digits = s.toString().replace("[^0-9]".toRegex(), "")
-            val limited = digits.take(11)
-
-            val formatted = when {
-                limited.length <= 2 ->
-                    "(${limited}"
-                limited.length <= 7 ->
-                    "(${limited.substring(0, 2)}) ${limited.substring(2)}"
-                limited.length <= 11 ->
-                    "(${limited.substring(0, 2)}) ${limited.substring(2, 7)}-${limited.substring(7)}"
-                else -> ""
             }
 
             isUpdating = true
