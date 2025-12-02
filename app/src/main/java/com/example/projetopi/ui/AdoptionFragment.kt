@@ -1,6 +1,8 @@
 package com.example.projetopi.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +28,7 @@ class AdoptionFragment : Fragment() {
     private lateinit var adapter: PetAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var database: DatabaseReference
+    private var allPetsList = mutableListOf<Pet>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,8 +47,8 @@ class AdoptionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       recyclerView = view.findViewById(R.id.recyclerViewAdoption)
-       recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView = view.findViewById(R.id.recyclerViewAdoption)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         adapter = PetAdapter(requireContext()) { pet, action ->
             when (action) {
@@ -61,12 +64,13 @@ class AdoptionFragment : Fragment() {
 
         carregarPets()
         initListeners()
+        setupSearchListener()
     }
 
     private fun carregarPets() {
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val listaPets = mutableListOf<Pet>()
+                allPetsList.clear()
 
                 for (userSnap in snapshot.children) {
                     val cadastro = userSnap
@@ -74,7 +78,7 @@ class AdoptionFragment : Fragment() {
                     if (cadastro.exists()) {
                         val pet = cadastro.getValue(Animal::class.java)
                         if (pet?.nome != null) {
-                            listaPets.add(
+                            allPetsList.add(
                                 Pet(
                                     id = userSnap.key ?: "",
                                     nome = pet.nome,
@@ -89,14 +93,48 @@ class AdoptionFragment : Fragment() {
                     }
                 }
 
-                adapter.submitList(listaPets)
+                adapter.submitList(allPetsList)
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), "Erro ao carregar animais", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Erro ao carregar animais: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
+
+    private fun setupSearchListener() {
+        binding.busca.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filterList(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun filterList(query: String) {
+        val lowerCaseQuery = query.lowercase().trim()
+
+        if (lowerCaseQuery.isEmpty()) {
+            adapter.submitList(allPetsList)
+            return
+        }
+
+        val filteredList = allPetsList.filter { pet ->
+            pet.nome?.lowercase()?.contains(lowerCaseQuery) == true ||
+                    pet.especie?.lowercase()?.contains(lowerCaseQuery) == true ||
+                    pet.raca?.lowercase()?.contains(lowerCaseQuery) == true
+        }
+
+        adapter.submitList(filteredList)
+
+        if (filteredList.isEmpty()) {
+            Toast.makeText(requireContext(), "Nenhum pet encontrado para '$query'", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     private fun initListeners() {
         binding.btnChat.setOnClickListener {
             findNavController().navigate(R.id.action_adoptionFragment_to_chatFragment)
