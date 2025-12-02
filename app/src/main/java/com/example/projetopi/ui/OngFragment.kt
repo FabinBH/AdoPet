@@ -1,6 +1,8 @@
 package com.example.projetopi.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +25,7 @@ class OngFragment : Fragment() {
     private lateinit var adapter: OngAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var database: DatabaseReference
+    private var allOngsList = mutableListOf<Ong>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +50,7 @@ class OngFragment : Fragment() {
         adapter = OngAdapter(requireContext()) { ong, action ->
             when (action) {
                 OngAdapter.SELECT_ONG-> {
-                    Toast.makeText(requireContext(), "ONG selecionada", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "ONG selecionada: ${ong.nome}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -58,6 +61,7 @@ class OngFragment : Fragment() {
 
         carregarOngs()
         initListeners()
+        setupSearchListener()
     }
 
     private fun initListeners() {
@@ -71,22 +75,25 @@ class OngFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val listaOngs = mutableListOf<Ong>()
 
+                allOngsList.clear()
+
                 for (usuarioSnapshot in snapshot.children) {
                     val cadastro = usuarioSnapshot.child("cadastro").child("PessoaJuridica")
 
                     if (cadastro.exists()) {
                         val ong = cadastro.getValue(PessoaJuridica::class.java)
+
                         if (ong?.instituicao != null) {
-                            listaOngs.add(
-                                Ong(
-                                    id = usuarioSnapshot.key ?: "",
-                                    nome = ong.instituicao,
-                                    fotoUrl = ong.fotoUrl,
-                                    cnpj = ong.cnpj,
-                                    email = ong.email,
-                                    telefone = ong.telefone
-                                )
+                            val novaOng = Ong(
+                                id = usuarioSnapshot.key ?: "",
+                                nome = ong.instituicao,
+                                fotoUrl = ong.fotoUrl,
+                                cnpj = ong.cnpj,
+                                email = ong.email,
+                                telefone = ong.telefone
                             )
+                            listaOngs.add(novaOng)
+                            allOngsList.add(novaOng)
                         }
                     }
                 }
@@ -95,8 +102,41 @@ class OngFragment : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(requireContext(), "Erro ao carregar ONGs", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Erro ao carregar ONGs: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun setupSearchListener() {
+        binding.busca.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filterList(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun filterList(query: String) {
+        val lowerCaseQuery = query.lowercase().trim()
+
+        if (lowerCaseQuery.isEmpty()) {
+            adapter.submitList(allOngsList)
+            return
+        }
+
+        val filteredList = allOngsList.filter { ong ->
+            ong.nome.lowercase().contains(lowerCaseQuery) ||
+                    ong.email?.lowercase()?.contains(lowerCaseQuery) == true ||
+                    ong.cnpj?.lowercase()?.contains(lowerCaseQuery) == true
+        }
+
+        adapter.submitList(filteredList)
+
+        if (filteredList.isEmpty()) {
+            Toast.makeText(requireContext(), "Nenhuma ONG encontrada para '$query'", Toast.LENGTH_SHORT).show()
+        }
     }
 }
