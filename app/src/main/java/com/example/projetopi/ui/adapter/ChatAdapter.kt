@@ -1,5 +1,6 @@
 package com.example.projetopi.ui.adapter
 
+import android.R
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.util.Base64
@@ -49,15 +50,23 @@ class ChatAdapter(
 
             if (!chat.fotoBase64.isNullOrEmpty()) {
                 try {
-                    val bytes = Base64.decode(chat.fotoBase64, Base64.DEFAULT)
-                    val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                    var base64 = chat.fotoBase64
+
+                    if (base64.startsWith("data:image")) {
+                        base64 = base64.substring(base64.indexOf(",") + 1)
+                    }
+
+                    val imageBytes = Base64.decode(base64, Base64.DEFAULT)
+                    val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+
                     binding.profilePhoto.setImageBitmap(bitmap)
+
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    binding.profilePhoto.setImageResource(android.R.drawable.ic_menu_report_image)
+                    binding.profilePhoto.setImageResource(R.drawable.ic_menu_report_image)
                 }
             } else {
-                binding.profilePhoto.setImageResource(android.R.drawable.ic_menu_report_image)
+                binding.profilePhoto.setImageResource(R.drawable.ic_menu_report_image)
             }
 
             binding.root.setOnClickListener {

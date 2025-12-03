@@ -1,5 +1,6 @@
 package com.example.projetopi.ui.adapter
 
+import android.R
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.util.Base64
@@ -51,15 +52,23 @@ class OngAdapter(
 
             if (!ong.fotoUrl.isNullOrEmpty()) {
                 try {
-                    val imageBytes = Base64.decode(ong.fotoUrl, Base64.DEFAULT)
-                    val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-                    binding.imgOng.setImageBitmap(decodedImage)
+                    var base64 = ong.fotoUrl
+
+                    if (base64.startsWith("data:image")) {
+                        base64 = base64.substring(base64.indexOf(",") + 1)
+                    }
+
+                    val imageBytes = Base64.decode(base64, Base64.DEFAULT)
+                    val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+
+                    binding.imgOng.setImageBitmap(bitmap)
+
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    binding.imgOng.setImageResource(android.R.drawable.ic_menu_report_image)
+                    binding.imgOng.setImageResource(R.drawable.ic_menu_report_image)
                 }
             } else {
-                binding.imgOng.setImageResource(android.R.drawable.ic_menu_report_image)
+                binding.imgOng.setImageResource(R.drawable.ic_menu_report_image)
             }
 
             binding.root.setOnClickListener {

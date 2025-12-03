@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.projetopi.R
 import com.example.projetopi.data.model.Pet
 import com.example.projetopi.databinding.ItemAdopetBinding
 
@@ -52,15 +53,23 @@ class PetAdapter (
 
             if (!pet.fotoUrl.isNullOrEmpty()) {
                 try {
-                    val imageBytes = Base64.decode(pet.fotoUrl, Base64.DEFAULT)
-                    val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-                    binding.imgPet.setImageBitmap(decodedImage)
+                    var base64 = pet.fotoUrl
+
+                    if (base64.startsWith("data:image")) {
+                        base64 = base64.substring(base64.indexOf(",") + 1)
+                    }
+
+                    val imageBytes = Base64.decode(base64, Base64.DEFAULT)
+                    val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+
+                    binding.imgPet.setImageBitmap(bitmap)
+
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    binding.imgPet.setImageResource(android.R.drawable.ic_menu_report_image)
+                    binding.imgPet.setImageResource(R.drawable.ic_animal)
                 }
             } else {
-                binding.imgPet.setImageResource(android.R.drawable.ic_menu_report_image)
+                binding.imgPet.setImageResource(R.drawable.ic_animal)
             }
 
             binding.root.setOnClickListener {
