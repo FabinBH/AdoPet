@@ -76,7 +76,7 @@ class OngInfo2Fragment : Fragment() {
     private fun collectOngDataPart2(): Map<String, Any>? {
         val email = binding.editTextEmail.text.toString().trim()
         val site = binding.editTextSite.text.toString().trim()
-        val responsavel = binding.editTextTelefone.text.toString().trim()
+        val responsavel = binding.editTextResponsavel.text.toString().trim()
         val necessidade = binding.editTextNecessidade.text.toString().trim()
 
         if (email.isEmpty() || necessidade.isEmpty()) return null
