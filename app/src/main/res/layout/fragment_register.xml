@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="24dp"
+        android:paddingBottom="90dp"
         android:paddingTop="24dp"
         android:paddingStart="24dp"
         android:paddingEnd="24dp">
@@ -205,18 +205,17 @@
             android:id="@+id/advanceButton"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="#FF9800"
+            android:fontFamily="@font/afacadbold"
             android:text="@string/avan_ar"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:fontFamily="@font/afacadbold"
             app:cornerRadius="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayoutHistorico" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -19,7 +19,7 @@ class PetAdapter (
 ): ListAdapter<Pet, PetAdapter.MyViewHolder>(DIFF_CALBACK) {
 
     companion object {
-        val SELECT_ADOPT = 1
+        const val SELECT_ADOPT = 1
         private val DIFF_CALBACK = object : DiffUtil.ItemCallback<Pet>() {
             override fun areItemsTheSame(oldItem: Pet, newItem: Pet): Boolean {
                 return oldItem.id == newItem.id
@@ -32,7 +32,7 @@ class PetAdapter (
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = ItemAdopetBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view = ItemAdopetBinding.inflate(LayoutInflater.from(context), parent, false)
         return MyViewHolder(view)
     }
 

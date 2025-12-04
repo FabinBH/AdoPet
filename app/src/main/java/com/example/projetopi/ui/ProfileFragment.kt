@@ -1,5 +1,6 @@
 package com.example.projetopi.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -36,6 +37,7 @@ class ProfileFragment : Fragment() {
         configurarLogout()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun carregarDados() {
         val user = auth.currentUser
         val uid = user?.uid

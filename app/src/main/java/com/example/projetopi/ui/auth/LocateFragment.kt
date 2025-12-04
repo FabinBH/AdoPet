@@ -106,7 +106,7 @@ class LocateFragment : Fragment() {
     private fun salvarDadosLocalizacao(dados: Map<String, Any>) {
         val uid = userUid!!
 
-        val updateMap = mutableMapOf<String, Any>(
+        val updateMap = mutableMapOf(
             "localizacao" to dados,
             "email" to userEmail.toString(),
             "createdAt" to System.currentTimeMillis()

@@ -1,6 +1,6 @@
 package com.example.projetopi.ui.adapter
 
-import android.R
+import android.R.drawable
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.util.Base64
@@ -32,7 +32,7 @@ class ChatAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemChatBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemChatBinding.inflate(LayoutInflater.from(context), parent, false)
         return MyViewHolder(binding)
     }
 
@@ -63,10 +63,10 @@ class ChatAdapter(
 
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    binding.profilePhoto.setImageResource(R.drawable.ic_menu_report_image)
+                    binding.profilePhoto.setImageResource(drawable.ic_menu_report_image)
                 }
             } else {
-                binding.profilePhoto.setImageResource(R.drawable.ic_menu_report_image)
+                binding.profilePhoto.setImageResource(drawable.ic_menu_report_image)
             }
 
             binding.root.setOnClickListener {

@@ -1,6 +1,6 @@
 package com.example.projetopi.ui.adapter
 
-import android.R
+import android.R.drawable
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.util.Base64
@@ -65,10 +65,10 @@ class OngAdapter(
 
                 } catch (e: Exception) {
                     e.printStackTrace()
-                    binding.imgOng.setImageResource(R.drawable.ic_menu_report_image)
+                    binding.imgOng.setImageResource(drawable.ic_menu_report_image)
                 }
             } else {
-                binding.imgOng.setImageResource(R.drawable.ic_menu_report_image)
+                binding.imgOng.setImageResource(drawable.ic_menu_report_image)
             }
 
             binding.root.setOnClickListener {

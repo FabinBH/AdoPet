@@ -8,16 +8,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.projetopi.R
-import com.example.projetopi.databinding.FragmentChoosePersonBinding // Importe o binding gerado
-import com.google.firebase.database.database
-import com.google.firebase.Firebase
+import com.example.projetopi.databinding.FragmentChoosePersonBinding
 
 class ChoosePersonFragment : Fragment() {
 
     private var _binding: FragmentChoosePersonBinding? = null
     private val binding get() = _binding!!
-
-    private val database = Firebase.database.reference
     private var userUid: String? = null
 
     override fun onCreateView(
